@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class RackaSkripta : MonoBehaviour {
@@ -24,7 +24,7 @@ public class RackaSkripta : MonoBehaviour {
 
 	Vector3 startPoz;
 
-	bool zgubil=false;
+	public bool zgubil=false;
 	float cas=0;
 
 	public float maxScale=2;
@@ -125,6 +125,7 @@ public class RackaSkripta : MonoBehaviour {
 		povozena.transform.rotation = transform.rotation;
 		meni.lost();
 		gameObject.SetActive(false);
+        zgubil = true;
 	}
 
 	void OnTriggerExit(Collider other) {
@@ -184,6 +185,11 @@ public class RackaSkripta : MonoBehaviour {
                 }
             }
         }
+    }
+
+    void OnBecameInvisible()
+    {
+        zgubil = true;
     }
 
 

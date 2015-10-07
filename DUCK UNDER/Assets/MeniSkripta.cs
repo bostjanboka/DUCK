@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -77,13 +77,60 @@ public class MeniSkripta : MonoBehaviour {
 
 
 	public void play(){
-		tocke = 0;
+        StartCoroutine(Camera1());  
+        tocke = 0;
 		deltaTocke = kamera.transform.position.z;
 		meni.SetActive (false);
 		hud.SetActive (true);
 		loose.SetActive (false);
-		InputKey.enableI = true;
-	}
+		InputKey.enableI = true;        
+    }
+
+    IEnumerator Camera1()
+    {
+        StartCoroutine(MoveCamera());
+        StartCoroutine(RotateCamera());
+        yield return StartCoroutine(RotateCamera());
+
+        Camera.main.GetComponent<SlediRaciSkripta>().enabled = true;
+
+    }
+
+    IEnumerator RotateCamera()
+    {
+        float transitionDuration = 1f;
+
+        float t = 0.0f;
+        Quaternion startingPos = Camera.main.transform.rotation;
+        Quaternion target = Quaternion.Euler(54f, 70f, -2.9f);
+
+        while (t < 1.0f)
+        {
+            t += Time.deltaTime * (Time.timeScale / transitionDuration);
+
+
+            Camera.main.transform.rotation = Quaternion.Lerp(startingPos, target, t);
+            yield return null;
+        }
+    }
+
+    IEnumerator MoveCamera()
+    {
+        float transitionDuration = 1f;
+
+        float t = 0.0f;
+        Vector3 startingPos = Camera.main.transform.position;
+        Vector3 target = new Vector3(-46f, 40f, 0f);
+
+        while (t < 1.0f)
+        {
+            t += Time.deltaTime * (Time.timeScale / transitionDuration);
+
+
+            Camera.main.transform.position = Vector3.Lerp(startingPos, target, t);
+            yield return null;
+        }
+    }
 
 	public void reset(){
 		raca.SetActive (true);

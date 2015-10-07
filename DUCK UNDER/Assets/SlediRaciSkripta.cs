@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class SlediRaciSkripta : MonoBehaviour {
@@ -21,6 +21,7 @@ public class SlediRaciSkripta : MonoBehaviour {
     public RandomCreatorSkripta mapCreator;
 
 	void Start () {
+
 		startPoz = transform.position;
         
 		
@@ -44,15 +45,24 @@ public class SlediRaciSkripta : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (raca) {
+		if (raca && raca.GetComponent<RackaSkripta>().zgubil == false) {
+
+            bool stojimo = true;
 			Vector3 pozicija = raca.transform.position - stalni;
 			if(pozicija.x > poX.x-gorDol && pozicija.x < poX.x + gorDol){
 				kameraPoz.x = pozicija.x;
 			}
 			if(pozicija.z > maxZ){
-				kameraPoz.z = pozicija.z;
+                stojimo = false;
+                kameraPoz.z = pozicija.z;
 				maxZ = pozicija.z;
 			}
+
+            if(stojimo)
+            {
+                kameraPoz.z += 0.07f;
+                maxZ += 0.07f;
+            }
 			transform.position=kameraPoz;
 			Ray ray = new Ray(transform.position,transform.forward);
 			Debug.DrawRay(transform.position, transform.forward, Color.green);
@@ -89,6 +99,7 @@ public class SlediRaciSkripta : MonoBehaviour {
                 }
 
             }
+            
         }
 
         if(ScreenOrientation.Portrait == Screen.orientation)
