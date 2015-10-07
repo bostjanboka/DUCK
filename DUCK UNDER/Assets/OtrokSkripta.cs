@@ -16,6 +16,7 @@ public class OtrokSkripta : MonoBehaviour {
 	AudioSkripta audio2;
 
     GameObject raca;
+    GameObject sirokaExit;
 	void Awake(){
 		povozenOtrok = Instantiate (povozenaRaca) as GameObject;
 		//povozenOtrok.SetActive (false);
@@ -58,10 +59,25 @@ public class OtrokSkripta : MonoBehaviour {
 				audio2.povozi();
 				gameObject.SetActive(false);
 			}
-		} 
+		}else if (other.CompareTag("siroka"))
+        {
+            if(sirokaExit != null && sirokaExit != other.gameObject)
+            {
+                raca.GetComponent<RackaSkripta>().rackaPreckala(false, other.gameObject);
+            }
+        }
 	}
 
-	public void uniciOtroka(){
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("siroka"))
+        {
+            sirokaExit = other.gameObject;
+            raca.GetComponent<RackaSkripta>().rackaPreckala(true, null);
+        }
+    }
+
+    public void uniciOtroka(){
 		Destroy (povozenOtrok);
 	}
 }

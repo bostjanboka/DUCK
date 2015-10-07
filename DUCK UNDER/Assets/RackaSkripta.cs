@@ -31,6 +31,8 @@ public class RackaSkripta : MonoBehaviour {
 	public float casScale=2;
 	Transform tocket;
 
+    int stRackPreckalo = 0;
+
 	void Awake(){
 		tocke = new GameObject[10];
 		tocket = transform.FindChild("tocke");
@@ -146,6 +148,8 @@ public class RackaSkripta : MonoBehaviour {
 		stRack = 10;
 		zgubil = false;
 		cas = 0;
+        stRackPreckalo = 0;
+        
 	}
 
 	void postaviOtroke(){
@@ -161,6 +165,26 @@ public class RackaSkripta : MonoBehaviour {
 			tocke[i].GetComponent<ZasledujeMeSkripta>().ZasledujeMe = game;
 		}
 	}
+
+    public void rackaPreckala(bool reset, GameObject siroka)
+    {
+        if (reset)
+        {
+            stRackPreckalo = 0;
+        }
+        else
+        {
+            stRackPreckalo++;
+            if (stRackPreckalo >= 10)
+            {
+                stRackPreckalo = 0;
+                if(siroka != null)
+                {
+                    siroka.GetComponent<posliIzbrisSkripta>().objekt.GetComponent<SirokaRandomSkripta>().setPerfect();
+                }
+            }
+        }
+    }
 
 
 
