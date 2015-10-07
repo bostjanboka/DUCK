@@ -14,6 +14,7 @@ public class RackaSkripta : MonoBehaviour {
 	public GameObject zasledujeMe;
 	public GameObject otrok;
 	public GameObject povozenaRaca;
+    public GameObject perfect;
 
 	public static int stRack=10;
 	Vector3 smer;
@@ -56,6 +57,7 @@ public class RackaSkripta : MonoBehaviour {
 	void Start () {
 
 		valovi = transform.FindChild ("valovi").gameObject;
+        perfect.SetActive(false);
 
 	}
 	
@@ -181,7 +183,9 @@ public class RackaSkripta : MonoBehaviour {
                 stRackPreckalo = 0;
                 if(siroka != null)
                 {
-                    siroka.GetComponent<posliIzbrisSkripta>().objekt.GetComponent<SirokaRandomSkripta>().setPerfect();
+                    perfect.transform.position =  siroka.GetComponent<posliIzbrisSkripta>().objekt.GetComponent<SirokaRandomSkripta>().getPerfect();
+                    perfect.SetActive(false);
+                    perfect.SetActive(true);
                 }
             }
         }

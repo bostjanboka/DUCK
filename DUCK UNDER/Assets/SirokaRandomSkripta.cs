@@ -64,8 +64,8 @@ public class SirokaRandomSkripta : MonoBehaviour {
 		}
 	}
 
-    public void setPerfect()
+    public Vector3 getPerfect()
     {
-        perfect.SetActive(true);
+        return perfect.transform.position;
     }
 }
