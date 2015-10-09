@@ -18,6 +18,7 @@ public class SlediRaciSkripta : MonoBehaviour {
     int ekran = 0;
 
     public GameObject unicevalka;
+    public GameObject unicevalkaZ;
     public RandomCreatorSkripta mapCreator;
 
 	void Start () {
@@ -99,7 +100,18 @@ public class SlediRaciSkripta : MonoBehaviour {
                 }
 
             }
-            
+
+            hit = Physics.RaycastAll(Camera.main.ViewportPointToRay(new Vector3(1, 1, 0)));
+            for (int i = 0; i < hit.Length; i++)
+            {
+                if (hit[i].point != null && (hit[i].collider.gameObject.CompareTag("siroka") || hit[i].collider.gameObject.CompareTag("tla")))
+                {
+                    Debug.Log(hit[i].collider.gameObject.tag + "top right");
+                    unicevalkaZ.transform.position = hit[i].point;
+                }
+
+            }
+
         }
 
         if(ScreenOrientation.Portrait == Screen.orientation)

@@ -55,6 +55,7 @@ public class RandomCreatorSkripta : MonoBehaviour {
 
 	RandomVoziloSkripta randomVozilo;
     public GameObject zaIzbrisatObjekt;
+    public GameObject zaIzbrisatObjektZ;
     void Awake(){
         zadnjihX = new GameObject[5];
 		int skupaj = verCesta + verZeleznica;
@@ -202,7 +203,7 @@ public class RandomCreatorSkripta : MonoBehaviour {
 			//StartPostavitev();
 			nalozeno++;
 		}
-        if(zaIzbrisatObjekt != null && zaIzbrisatObjekt != list[0])
+        if(zaIzbrisatObjekt != null && zaIzbrisatObjekt != list[0] && zaIzbrisatObjektZ != list[0])
         {
             pobrisiZadnjega();
         }
@@ -277,6 +278,7 @@ public class RandomCreatorSkripta : MonoBehaviour {
 		list.Add (Kmetija);
 		StartPostavitev ();
         zaIzbrisatObjekt = null;
+        zaIzbrisatObjektZ = null;
 
 	}
 
