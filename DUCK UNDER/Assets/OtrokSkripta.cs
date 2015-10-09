@@ -56,7 +56,7 @@ public class OtrokSkripta : MonoBehaviour {
 				povozenOtrok.transform.position = transform.position;
 				povozenOtrok.transform.rotation = transform.rotation;
 				povozenOtrok.SetActive(true);
-				audio2.povozi();
+				//audio2.povozi();
 				gameObject.SetActive(false);
 			}
 		}else if (other.CompareTag("siroka"))
