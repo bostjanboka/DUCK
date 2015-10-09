@@ -54,6 +54,7 @@ public class RandomCreatorSkripta : MonoBehaviour {
 	bool vDelovanju=false;
 
 	RandomVoziloSkripta randomVozilo;
+    randomVlakSkripta randomVlak;
     public GameObject zaIzbrisatObjekt;
     public GameObject zaIzbrisatObjektZ;
     void Awake(){
@@ -61,6 +62,7 @@ public class RandomCreatorSkripta : MonoBehaviour {
 		int skupaj = verCesta + verZeleznica;
 		int sestevek = 0;
 		randomVozilo = transform.FindChild ("randomVozilo").GetComponent<RandomVoziloSkripta>();
+        randomVlak = transform.FindChild("randomVlak").GetComponent<randomVlakSkripta>();
 		
 		raca = GameObject.Find ("raca");
 		list = new List<GameObject>();
@@ -285,6 +287,11 @@ public class RandomCreatorSkripta : MonoBehaviour {
 	public GameObject vrniRandomVozilo(){
 		return randomVozilo.vrniVozilo ();
 	}
+
+    public GameObject getRandomVlak()
+    {
+        return randomVlak.getRandomVlak();
+    }
 
     
     public void pobrisiZadnjega()

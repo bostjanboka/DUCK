@@ -15,6 +15,7 @@ public class spawnVlakSkripta : MonoBehaviour {
 	
 	
 	GameObject prvi;
+    RandomCreatorSkripta mapCreator;
 	public GameObject zadnji;
     int nalozeniAvti = 0;
     int stAvtov = 12;
@@ -27,9 +28,10 @@ public class spawnVlakSkripta : MonoBehaviour {
     }
 	
 	void Start () {
+        mapCreator = GameObject.Find("MapCreator").GetComponent<RandomCreatorSkripta>();
 		terminator = transform.FindChild ("terminator").GetComponent<Collider> ();
 		GameObject zacasna;
-		prvi = Instantiate(objekt) as GameObject;
+		prvi = Instantiate(mapCreator.getRandomVlak()) as GameObject;
 		zacasna = prvi;
 		Physics.IgnoreCollision(zacasna.GetComponent<Collider>(), terminator);
 		zacasna.transform.rotation = transform.rotation;
@@ -40,7 +42,7 @@ public class spawnVlakSkripta : MonoBehaviour {
 		zacasna.SetActive(false);
 		
 		for (int i=0; i < stAvtov; i++) {
-			GameObject vozilo = Instantiate(objekt) as GameObject;
+			GameObject vozilo = Instantiate(mapCreator.getRandomVlak()) as GameObject;
 			Physics.IgnoreCollision(vozilo.GetComponent<Collider>(), terminator);
 			vozilo.transform.rotation = transform.rotation;
 			vozilo.transform.position = transform.position;
