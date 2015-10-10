@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class izberiSpawnSkripta : MonoBehaviour {
 
@@ -10,7 +11,9 @@ public class izberiSpawnSkripta : MonoBehaviour {
     public int stAvtov = 12;
     public int nalozeniAvti = 0;
     GameObject[] kovanci;
+    public List<GameObject> listResetk;
     void Awake(){
+        listResetk = new List<GameObject>();
         kovanci = new GameObject[6];
 		SpawnGameObjectSkripta[] spawn1 = GetComponentsInChildren<SpawnGameObjectSkripta> ();
 		if (spawn1.Length > 0) {
@@ -37,6 +40,7 @@ public class izberiSpawnSkripta : MonoBehaviour {
             kovanci[5] = transform.FindChild("SPAWN 6").gameObject;
         }
         
+        
     }
 
 	void Start () {
@@ -62,6 +66,11 @@ public class izberiSpawnSkripta : MonoBehaviour {
         kovanci[3].SetActive(false);
         kovanci[4].SetActive(false);
         kovanci[5].SetActive(false);
+        foreach(GameObject i in listResetk)
+        {
+            i.SetActive(false);
+        }
+        listResetk.Clear();
     }
 
 	public void postaviVozila(){

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class JasekSkripta : MonoBehaviour {
 
@@ -7,7 +8,8 @@ public class JasekSkripta : MonoBehaviour {
     int stEnter;
     GameObject coliderji;
     public GameObject[] racka;
-	void Start () {
+    List<GameObject> list;
+    void Start () {
         stEnter = 0;
         coliderji = transform.FindChild("COLIDERS").gameObject;
         coliderji.SetActive(false);
@@ -18,6 +20,7 @@ public class JasekSkripta : MonoBehaviour {
             racka[i] = crna.GetChild(i).GetChild(0).gameObject;
             racka[i].SetActive(false);
         }
+        list = transform.parent.parent.GetComponent<izberiSpawnSkripta>().listResetk;
         
 	}
 	
@@ -42,5 +45,11 @@ public class JasekSkripta : MonoBehaviour {
         {
             coliderji.SetActive(false);
         }
+    }
+
+    public void dodajRacko(int i)
+    {
+        racka[i].SetActive(true);
+        list.Add(racka[i]);
     }
 }

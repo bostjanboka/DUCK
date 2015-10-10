@@ -14,6 +14,7 @@ public class ResetkaSkripta : MonoBehaviour {
         {
             indeks += 10;
         }
+        indeks--;
     }
 	
 	// Update is called once per frame
@@ -23,11 +24,11 @@ public class ResetkaSkripta : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (transform.parent.parent.GetComponent<JasekSkripta>().racka[indeks].activeSelf && other.gameObject.CompareTag("otrok"))
+        if (!transform.parent.parent.GetComponent<JasekSkripta>().racka[indeks].activeSelf && other.gameObject.CompareTag("otrok"))
         {
             other.gameObject.SetActive(false);
             RackaSkripta.stRack--;
-            transform.parent.parent.GetComponent<JasekSkripta>().racka[indeks].SetActive(true);
+            transform.parent.parent.GetComponent<JasekSkripta>().dodajRacko(indeks);
         }
     }
 }
