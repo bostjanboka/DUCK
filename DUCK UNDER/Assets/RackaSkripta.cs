@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class RackaSkripta : MonoBehaviour {
 
@@ -15,6 +16,11 @@ public class RackaSkripta : MonoBehaviour {
 	public GameObject otrok;
 	public GameObject povozenaRaca;
     public GameObject perfect;
+
+    //julijan
+    public GameObject ScoreText;
+    public scoreLoadingImage ScoreTextScripta;
+    //julijan
 
 	public static int stRack=10;
 	Vector3 smer;
@@ -59,7 +65,10 @@ public class RackaSkripta : MonoBehaviour {
 		valovi = transform.FindChild ("valovi").gameObject;
         perfect.SetActive(false);
 
-	}
+        //julijan
+        ScoreTextScripta = ScoreText.GetComponent<scoreLoadingImage>();
+        //julijan
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -152,8 +161,10 @@ public class RackaSkripta : MonoBehaviour {
 		zgubil = false;
 		cas = 0;
         stRackPreckalo = 0;
-        
-	}
+        ScoreTextScripta.score = 0;
+
+
+    }
 
 	void postaviOtroke(){
 		for (int i=0; i < tocke.Length; i++) {

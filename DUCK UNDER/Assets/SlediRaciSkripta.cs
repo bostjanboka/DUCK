@@ -61,8 +61,8 @@ public class SlediRaciSkripta : MonoBehaviour {
 
             if(stojimo)
             {
-                kameraPoz.z += 0.07f;
-                maxZ += 0.07f;
+                kameraPoz.z += 0.1f;
+                maxZ += 0.1f;
             }
 			transform.position=kameraPoz;
 			Ray ray = new Ray(transform.position,transform.forward);
