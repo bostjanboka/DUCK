@@ -103,6 +103,7 @@ public class MeniSkripta : MonoBehaviour {
         float t = 0.0f;
         Quaternion startingPos = Camera.main.transform.rotation;
         Quaternion target = Quaternion.Euler(54f, 70f, -2.9f);
+       
 
         while (t < 1.0f)
         {
@@ -110,6 +111,8 @@ public class MeniSkripta : MonoBehaviour {
 
 
             Camera.main.transform.rotation = Quaternion.Lerp(startingPos, target, t);
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 54, t);
+            Camera.main.farClipPlane = Mathf.Lerp(Camera.main.farClipPlane, 103, t);
             yield return null;
         }
     }
