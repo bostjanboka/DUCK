@@ -30,8 +30,8 @@ public class scoreLoadingImage : MonoBehaviour {
         {
             slika.fillAmount += 0.0025f * stRack;
         }
-        scoreText.text = score + "SCORE";
-        multiplayer.text = "X" + stRack;
+        scoreText.text = score + "";
+        multiplayer.text = "x" + stRack;
 
     }
 }
