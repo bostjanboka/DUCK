@@ -41,7 +41,7 @@ public class MeniSkripta : MonoBehaviour {
 	}
 	void Start () {
 		bestScore.text = PlayerPrefs.GetInt ("score")+"";
-        bestMenu.text = "BEST: "+PlayerPrefs.GetInt("score") + "";
+        //bestMenu.text = "BEST: "+PlayerPrefs.GetInt("score") + "";
     }
 	
 	// Update is called once per frame
@@ -150,8 +150,8 @@ public class MeniSkripta : MonoBehaviour {
 			bestScore.text = Mathf.RoundToInt(tocke)+"";
 		}
         kamera.GetComponent<SlediRaciSkripta>().youLostShow();
-        bestLost.text = "BEST: "+PlayerPrefs.GetInt("score") + "";
-        scoreLost.text = "SCORE: "+Mathf.RoundToInt(tocke);
+        //bestLost.text = "BEST: "+PlayerPrefs.GetInt("score") + "";
+        //scoreLost.text = "SCORE: "+Mathf.RoundToInt(tocke);
     }
 
 	public void logIN(){
