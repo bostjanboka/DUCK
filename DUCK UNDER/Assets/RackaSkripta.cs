@@ -111,9 +111,7 @@ public class RackaSkripta : MonoBehaviour {
 				meni.lost();
 			}
 		}
-		else if (stRack < 1) {
-			zgubil = true;
-		}
+		
 
 	}
 
@@ -161,7 +159,7 @@ public class RackaSkripta : MonoBehaviour {
 		zgubil = false;
 		cas = 0;
         stRackPreckalo = 0;
-        ScoreTextScripta.score = 0;
+        scoreLoadingImage.score = 0;
 
 
     }

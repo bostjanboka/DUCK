@@ -9,7 +9,7 @@ public class scoreLoadingImage : MonoBehaviour {
     public RackaSkripta skript;
     public Text scoreText;
     public Text multiplayer;
-    public int score;
+    public static int score;
 
 
 	void Start ()

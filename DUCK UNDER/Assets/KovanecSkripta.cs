@@ -23,6 +23,7 @@ public class KovanecSkripta : MonoBehaviour {
         {
 
             animacija.SetActive(true);
+            scoreLoadingImage.score += 20;
             animacija.GetComponent<AudioSource>().Play();
             gameObject.SetActive(false);
         }

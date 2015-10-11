@@ -21,6 +21,6 @@ public class NaloziGameSkripta : MonoBehaviour {
 
     public void loadLevel()
     {
-        Application.LoadLevel("svetBB");
+        Application.LoadLevel("svetBB");      
     }
 }
