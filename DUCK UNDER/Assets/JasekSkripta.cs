@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class JasekSkripta : MonoBehaviour {
 
     // Use this for initialization
-    int stEnter;
+    public int stEnter;
     GameObject coliderji;
     public GameObject[] racka;
     List<GameObject> list;
@@ -26,7 +26,10 @@ public class JasekSkripta : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	   
+	   if(stEnter <= 0)
+        {
+            coliderji.SetActive(false);
+        }
 	}
 
     void OnTriggerEnter(Collider other)
@@ -41,7 +44,7 @@ public class JasekSkripta : MonoBehaviour {
     void OnTriggerExit(Collider other)
     {
         stEnter--;
-        if(stEnter == 0)
+        if(stEnter <= 0)
         {
             coliderji.SetActive(false);
         }
@@ -49,6 +52,7 @@ public class JasekSkripta : MonoBehaviour {
 
     public void dodajRacko(int i)
     {
+        stEnter--;
         racka[i].SetActive(true);
         list.Add(racka[i]);
     }
