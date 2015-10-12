@@ -3,7 +3,8 @@ using System.Collections;
 
 public class SkriptaPotujNaprej : MonoBehaviour {
 
-	// Use this for initialization
+    // Use this for initialization
+    public Collider[] kolesa;
 	public float speed=4;
 	public GameObject nazaj;
 	public Vector3 pozicija;
