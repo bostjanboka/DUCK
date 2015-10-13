@@ -26,8 +26,7 @@ public class ResetkaSkripta : MonoBehaviour {
     {
         if (!transform.parent.parent.GetComponent<JasekSkripta>().racka[indeks].activeSelf && other.gameObject.CompareTag("otrok"))
         {
-            other.gameObject.SetActive(false);
-            RackaSkripta.stRack--;
+            other.gameObject.GetComponent<OtrokSkripta>().ubijSe();
             transform.parent.parent.GetComponent<JasekSkripta>().dodajRacko(indeks);
         }
     }

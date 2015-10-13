@@ -19,7 +19,6 @@ public class OtrokSkripta : MonoBehaviour {
     GameObject sirokaExit;
 	void Awake(){
 		povozenOtrok = Instantiate (povozenaRaca) as GameObject;
-		//povozenOtrok.SetActive (false);
 		audio2 = GameObject.Find("Audio").GetComponent<AudioSkripta>();
 	}
 	void Start () {
@@ -27,38 +26,34 @@ public class OtrokSkripta : MonoBehaviour {
 		if(zasleduj)
 			zasleduj.GetComponent<ZasledujeMeSkripta> ().ZasledujeMe = gameObject;
         raca = GameObject.Find("raca");
+        ubijSe();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (zasleduj) {
+		smer = raca.transform.position;
+        smer.y = transform.position.y;
+		float step = speed*Time.deltaTime;
 
-			smer = raca.transform.position;
-            smer.y = transform.position.y;
-			float step = speed*Time.deltaTime;
-
-			Vector3 newDir = Vector3.RotateTowards(transform.position,smer,60,1.0f);
-			transform.rotation = Quaternion.LookRotation(newDir);
+		Vector3 newDir = Vector3.RotateTowards(transform.position,smer,60,1.0f);
+		transform.rotation = Quaternion.LookRotation(newDir);
             
-            Vector3 pos = Vector3.MoveTowards(transform.position,zasleduj.transform.position,step);
-            pos.y = transform.position.y;
-            transform.position = pos;
-		}
+        Vector3 pos = Vector3.MoveTowards(transform.position,zasleduj.transform.position,step);
+        //pos.y = transform.position.y;
+        transform.position = pos;
+		
 	}
 
 
 
 	void OnTriggerEnter(Collider other) {
 		if (other.CompareTag ("kolo")) {
-			if(!povozena){
-				RackaSkripta.stRack--;
-				povozena=true;
-				povozenOtrok.transform.position = transform.position;
-				povozenOtrok.transform.rotation = transform.rotation;
-				povozenOtrok.SetActive(true);
-				//audio2.povozi();
-				gameObject.SetActive(false);
-			}
+			povozenOtrok.transform.position = transform.position;
+			povozenOtrok.transform.rotation = transform.rotation;
+			povozenOtrok.SetActive(true);
+            //audio2.povozi();
+            ubijSe();
+			
 		}else if (other.CompareTag("siroka"))
         {
             if(sirokaExit != null && sirokaExit != other.gameObject)
@@ -77,7 +72,8 @@ public class OtrokSkripta : MonoBehaviour {
         }
     }
 
-    public void uniciOtroka(){
-		Destroy (povozenOtrok);
+    public void ubijSe(){
+        raca.GetComponent<RackaSkripta>().mrtveRacke.Add(gameObject);
+        gameObject.SetActive(false);
 	}
 }

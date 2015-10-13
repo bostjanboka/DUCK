@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class RackaSkripta : MonoBehaviour {
 
@@ -22,7 +23,7 @@ public class RackaSkripta : MonoBehaviour {
     public scoreLoadingImage ScoreTextScripta;
     //julijan
 
-	public static int stRack=10;
+	public static int stRack;
 	Vector3 smer;
 
 	GameObject valovi;
@@ -40,24 +41,23 @@ public class RackaSkripta : MonoBehaviour {
 
     int stRackPreckalo = 0;
 
-	void Awake(){
-		tocke = new GameObject[10];
-		tocket = transform.FindChild("tocke");
+    GameObject[] otroci;
+    public List<GameObject> mrtveRacke;
 
-		tocke[0] = tocket.FindChild ("t0").gameObject;
-		tocke[1] = tocket.FindChild ("t1").gameObject;
-		tocke[2] = tocket.FindChild ("t2").gameObject;
-		tocke[3] = tocket.FindChild ("t3").gameObject;
-		tocke[4] = tocket.FindChild ("t4").gameObject;
-		tocke[5] = tocket.FindChild ("t5").gameObject;
-		tocke[6] = tocket.FindChild ("t6").gameObject;
-		tocke[7] = tocket.FindChild ("t7").gameObject;
-		tocke[8] = tocket.FindChild ("t8").gameObject;
-		tocke[9] = tocket.FindChild ("t9").gameObject;
-		startPoz = transform.position;
-		postaviOtroke ();
+    void Awake(){
+        tocket = transform.FindChild("tocke");
+        tocke = new GameObject[tocket.childCount];
+		
+
+        for (int i=0; i < tocket.childCount; i++)
+        {
+            tocke[i] = tocket.GetChild(i).gameObject;
+        }
+        startPoz = transform.position;
+        otroci = new GameObject[tocke.Length];
+        postaviOtroke();
 		povozena = Instantiate (povozenaRaca) as GameObject;
-		//povozena.SetActive (false);
+        mrtveRacke = new List<GameObject>(tocke.Length);
 	}
 
 	void Start () {
@@ -74,6 +74,7 @@ public class RackaSkripta : MonoBehaviour {
 	void Update () {
 
 		if (InputKey.tocka.activeSelf) {
+            stRack = otroci.Length - mrtveRacke.Count;
 			Vector3 zac = InputKey.tocka.transform.position;
 			zac.y = transform.position.y;
 			//InputKey.tocka.transform.position = zac;
@@ -104,7 +105,7 @@ public class RackaSkripta : MonoBehaviour {
 
 
 		if (zgubil) {
-			if(cas <= 1f){
+			if(cas <= 0.1f){
 				cas += Time.deltaTime;
 			}
 			else{
@@ -120,12 +121,12 @@ public class RackaSkripta : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.CompareTag ("voda")) {
+		/*if (other.CompareTag ("voda")) {
 			valovi.SetActive (true);
 		} else if (other.CompareTag ("orkan")) {
 			meni.lost ();
 			gameObject.SetActive (false);
-		} 
+		} */
 	}
 
 	public void povoziRaco(){
@@ -147,13 +148,20 @@ public class RackaSkripta : MonoBehaviour {
 		if (InputKey.tocka.activeSelf) {
 			InputKey.tocka.SetActive(false);
 		}
+        for(int i=0; i < otroci.Length; i++)
+        {
+            if (otroci[i].activeSelf)
+            {
+                otroci[i].GetComponent<OtrokSkripta>().ubijSe();
+            }
+        }
 		gameObject.SetActive (true);
 		povozena.SetActive (false);
 		teren.pobrisiVse ();
 		transform.position = startPoz;
 		kamera.Reset ();
 		meni.play ();
-		postaviOtroke ();
+		
 		orkan.Reset ();
 		stRack = 10;
 		zgubil = false;
@@ -165,18 +173,25 @@ public class RackaSkripta : MonoBehaviour {
     }
 
 	void postaviOtroke(){
-		for (int i=0; i < tocke.Length; i++) {
-			if(tocke[i].GetComponent<ZasledujeMeSkripta>().ZasledujeMe){
-				tocke[i].GetComponent<ZasledujeMeSkripta>().ZasledujeMe.GetComponent<OtrokSkripta>().uniciOtroka();
-			}
-
-			Destroy(tocke[i].GetComponent<ZasledujeMeSkripta>().ZasledujeMe);
-			Debug.Log("postavitev otrok");
-			GameObject game = Instantiate(otrok,tocke[i].transform.position,transform.rotation) as GameObject;
-			game.GetComponent<OtrokSkripta>().zasleduj = tocke[i];
-			tocke[i].GetComponent<ZasledujeMeSkripta>().ZasledujeMe = game;
-		}
+		for(int i =0; i < tocke.Length; i++)
+        {
+            otroci[i] = Instantiate(otrok, tocke[i].transform.position, transform.rotation) as GameObject;
+            otroci[i].GetComponent<OtrokSkripta>().zasleduj = tocke[i];
+        }
 	}
+
+    public bool oziviRacko(Vector3 pos, Quaternion rot)
+    {
+        if(mrtveRacke.Count > 0)
+        {
+            mrtveRacke[0].transform.position = pos;
+            mrtveRacke[0].transform.rotation = rot;
+            mrtveRacke[0].SetActive(true);
+            mrtveRacke.RemoveAt(0);
+            return true;
+        }
+        return false;
+    }
 
     public void rackaPreckala(bool reset, GameObject siroka)
     {

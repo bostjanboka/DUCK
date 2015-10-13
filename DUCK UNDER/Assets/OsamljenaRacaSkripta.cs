@@ -21,20 +21,12 @@ public class OsamljenaRacaSkripta : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.CompareTag ("raca") && gameObject.activeSelf) {
-			GameObject[] tocke = other.gameObject.GetComponent<RackaSkripta>().tocke;
-            other.gameObject.GetComponent<RackaSkripta>().rackaPreckala(true, null);
-			for(int i=0; i < tocke.Length; i++){
-				if(!tocke[i].GetComponent<ZasledujeMeSkripta>().ZasledujeMe.activeSelf){
-					GameObject zac = tocke[i].GetComponent<ZasledujeMeSkripta>().ZasledujeMe;
-					zac.transform.position = transform.position;
-					zac.transform.rotation = transform.rotation;
-					zac.GetComponent<OtrokSkripta>().povozena = false;
-					zac.SetActive(true);
-					gameObject.SetActive(false);
-					RackaSkripta.stRack++;
-					break;
-				}
-			}
+            if(other.gameObject.GetComponent<RackaSkripta>().oziviRacko(transform.position, transform.rotation))
+            {
+                other.gameObject.GetComponent<RackaSkripta>().rackaPreckala(true, null);
+                gameObject.SetActive(false);
+            }
+            
 
 		}
 	}

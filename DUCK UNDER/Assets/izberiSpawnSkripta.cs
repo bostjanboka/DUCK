@@ -22,13 +22,8 @@ public class izberiSpawnSkripta : MonoBehaviour {
 			izbira = Random.Range (0, 2);
 			spawn1 [izbira].enabled = true;
 		} else {
-			spawnColnSkripta[] spawn2 = GetComponentsInChildren<spawnColnSkripta> ();
-			if(spawn2.Length > 0){
-				spawn2 [Random.Range (0, 2)].enabled = false;
-			}else{
-				spawnVlakSkripta[] spawn3 = GetComponentsInChildren<spawnVlakSkripta> ();
-				spawn3 [Random.Range (1, 2)].enabled = false;
-			}
+			spawnVlakSkripta[] spawn3 = GetComponentsInChildren<spawnVlakSkripta> ();
+			spawn3 [Random.Range (1, 2)].enabled = false;
 		}
         if(stAvtov > 5)
         {

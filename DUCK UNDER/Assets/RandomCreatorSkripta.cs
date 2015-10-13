@@ -164,44 +164,15 @@ public class RandomCreatorSkripta : MonoBehaviour {
 
 	}
 
-	public void StartPostavitev () {
-		dodajElement(prviCesta,cesta);
-		prejsni = cesta;
-		for (int i=0; i < 4; i++) {
-			GameObject spawn = tabela[Random.Range(0,tabela.Length)];
-			if(spawn == prejsni && spawn == travaSiroka){
-				spawn = cesta;
-			}
-			if(prejsni == spawn && spawn == cesta){
-				dodajElement(prviCrte,crte);
-			
-			}else if(prejsni == spawn && spawn == zeleznica){
-				dodajElement(prviTrava,trava);
-				
-			}else if(prejsni != travaSiroka && prejsni != spawn && spawn != travaSiroka){
-				dodajElement(prviTrava,trava);
-			}
-
-			if(spawn == cesta){
-				dodajElement(prviCesta,spawn);
-			}
-			else if(spawn == zeleznica){
-				dodajElement(prviZeleznica,spawn);
-			
-			}else{ //if(spawn == travaSiroka){
-				dodajElement(prviSiroka,spawn);
-			}
-
-			prejsni = spawn;
-			stetjeTrave++;
-		}
-		vDelovanju = true;
-	}
 	
 	// Update is called once per frame
 	void Update () {
 		Debug.Log (nalozeno + " nalozilo");
-		if (nalozeno == 23) {
+        if(list.Count < 5 && nalozeno == 24)
+        {
+            dodajNoviElement();
+        }
+		else if (nalozeno == 23) {
 			//StartPostavitev();
 			nalozeno++;
 		}
@@ -278,7 +249,7 @@ public class RandomCreatorSkripta : MonoBehaviour {
 		stTrav = 0;
 		Kmetija.SetActive (true);
 		list.Add (Kmetija);
-		StartPostavitev ();
+		//StartPostavitev ();
         zaIzbrisatObjekt = null;
         zaIzbrisatObjektZ = null;
 

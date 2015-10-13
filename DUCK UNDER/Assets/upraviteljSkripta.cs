@@ -16,7 +16,7 @@ public class upraviteljSkripta : MonoBehaviour {
 	void Update () {
 		cas += Time.deltaTime;
 		if (cas > 3 && cas < 50) {
-			mapCreator.GetComponent<RandomCreatorSkripta> ().StartPostavitev ();
+			//mapCreator.GetComponent<RandomCreatorSkripta> ().StartPostavitev ();
 			cas =60;
 		}
 	}
