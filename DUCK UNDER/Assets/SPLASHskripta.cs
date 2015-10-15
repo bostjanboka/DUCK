@@ -4,10 +4,13 @@ using System.Collections;
 public class SPLASHskripta : MonoBehaviour {
 
     public Texture2D zelena;
+    Texture2D zelena2;
 
-	void Start () {
-        PlayVideo();
-	}
+    void Start () {
+        //PlayVideo();
+        zelena2 = Resources.Load("cipresa") as Texture2D;
+        StartCoroutine("PlayVideo");
+    }
 	
 	void Update () {
         
@@ -16,11 +19,8 @@ public class SPLASHskripta : MonoBehaviour {
     IEnumerator PlayVideo()
     {
 
-
-        Texture2D zelena = Resources.Load("cipresa") as Texture2D;
-        
-        
         yield return new WaitForSeconds(1);
+        zelena = zelena2;
     }
     void OnGUI()
     {
