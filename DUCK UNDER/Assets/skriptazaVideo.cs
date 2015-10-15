@@ -3,11 +3,11 @@ using System.Collections;
 
 public class skriptazaVideo : MonoBehaviour {
 
-    public Texture2D mTex;
+    public Texture mTex;
  
     void Start()
     {
-        PlayVideo(30, "LaytProductsSplash", 4, "MainMenu");
+        PlayVideo(60, "SPLASHzelena", 4);
     }
 
     void Update()
@@ -15,11 +15,11 @@ public class skriptazaVideo : MonoBehaviour {
 
     }
 
-    IEnumerator PlayVideo(int fps, string path, int numberDigits, string levelAfter)
+    IEnumerator PlayVideo(int fps, string path, int numberDigits)
     {
         int i  = 0;
         bool done = false;
-        int allImages = Resources.LoadAll(path,  typeof( Texture2D)).Length - 1;
+        int allImages = Resources.LoadAll(path, typeof(Texture)).Length - 1;
         print(allImages.ToString());
         while (!done)
         {
@@ -55,13 +55,12 @@ public class skriptazaVideo : MonoBehaviour {
             }
             string currentFile = path + "/" + path + digits;
             print(currentFile);
-            Texture2D videoTexture = Resources.Load(currentFile) as Texture2D;
+            Texture videoTexture = Resources.Load(currentFile) as Texture;
 
             mTex = videoTexture;
             i++;
             yield return new WaitForSeconds(1 / fps);
         }
-        Application.LoadLevel(levelAfter);
     }
 
     void OnGUI()
