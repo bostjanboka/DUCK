@@ -34,7 +34,6 @@ public class skriptazaVideo : MonoBehaviour {
 
     void OnGUI()
     {
-        GUI.DrawTexture(new Rect(Screen.width / 2, 0, 100, 10), mTex);//480x360 is size of game in PlayerSettings.
-                                                                        //check resolution by going to Edit>Project Settings>Player and look under Resolution
+        GUI.DrawTexture(new Rect(Screen.width / 2, 0, 100, 10), mTex);
     }
 }
