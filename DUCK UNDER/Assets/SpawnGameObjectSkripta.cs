@@ -46,7 +46,7 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
 		zacasna.transform.SetParent(transform.parent);
 		zacasna.GetComponent<SkriptaPotujNaprej>().speed = speed;
 		zacasna.GetComponent<SkriptaPotujNaprej>().pozicija = zacasna.transform.localPosition;
-		zacasna.SetActive(false);
+		//zacasna.SetActive(false);
 		for (int i=0; i < stAvtov; i++) {
 			GameObject vozilo = Instantiate(mapCreator.vrniRandomVozilo()) as GameObject;
 			Physics.IgnoreCollision(vozilo.GetComponent<Collider>(), terminator);
@@ -77,7 +77,8 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
 			zac.transform.localPosition = zac.GetComponent<SkriptaPotujNaprej>().pozicija;
 			zac.GetComponent<SkriptaPotujNaprej>().speed=speed;
 			prvi = zac.GetComponent<SkriptaPotujNaprej>().nazaj;
-			zac.SetActive(true);
+            //zac.SetActive(true);
+            zac.GetComponent<SkriptaPotujNaprej>().setActiveObject(true);
 			Physics.IgnoreCollision(zac.GetComponent<Collider>(), terminator);
 			//zac.GetComponent<SkriptaPotujNaprej>().nazaj=null;
 			cas = vrniZamik(prvi) / speed;
@@ -87,8 +88,9 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
 	}
 
 	public void pospraviVse(int st,GameObject x){
-		x.SetActive (false);
-		if (st > 0) {
+		//x.SetActive (false);
+        x.GetComponent<SkriptaPotujNaprej>().setActiveObject(true);
+        if (st > 0) {
 			pospraviVse (st-1,x.GetComponent<SkriptaPotujNaprej> ().nazaj);
 		}
 	}
@@ -105,7 +107,7 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
 			zac.transform.position += transform.forward*vsota;
             
             prvi = zac.GetComponent<SkriptaPotujNaprej>().nazaj;
-            zac.SetActive(true);
+            zac.GetComponent<SkriptaPotujNaprej>().setActiveObject(true);
             Physics.IgnoreCollision(zac.GetComponent<Collider>(), terminator);
             
             //zac.GetComponent<SkriptaPotujNaprej>().nazaj=null;
