@@ -78,6 +78,7 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
             cas -= Time.deltaTime;
             if (cas <= 0 && prvi.GetComponent<SkriptaPotujNaprej>().nazaj)
             {
+                terminator.enabled = true;
                 GameObject zac = prvi;
 
                 zac.transform.localPosition = zac.GetComponent<SkriptaPotujNaprej>().pozicija;
@@ -102,7 +103,7 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
 
 	public void postaviVozila(){
 		float vsota = 0;
-        
+        terminator.enabled = true;
 		for (int i=0; i < 3; i++) {
 			GameObject zac = prvi;
 			vsota += vrniZamik(zac);

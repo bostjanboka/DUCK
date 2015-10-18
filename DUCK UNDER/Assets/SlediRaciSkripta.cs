@@ -68,8 +68,8 @@ public class SlediRaciSkripta : MonoBehaviour {
                 maxZ += 0.05f;
             }
 			transform.position=kameraPoz;
-			Ray ray = new Ray(transform.position,transform.forward);
-			Debug.DrawRay(transform.position, transform.forward, Color.green);
+			Ray ray = new Ray(transform.position,raca.transform.position-transform.position);
+			
 			
 			RaycastHit[] hit;
 
@@ -78,21 +78,21 @@ public class SlediRaciSkripta : MonoBehaviour {
 			for (int i=0; i < hit.Length; i++) {
 
 				if (hit [i].point != null && hit [i].collider.gameObject.CompareTag ("siroka")) {
-					MeniSkripta.stejTocke=false;
+                    hit[i].collider.gameObject.GetComponent<nazajSkripta>().pokeColisn = 1;
+                    MeniSkripta.stejTocke=false;
 					break;
 				}
 			}
 
             hit = Physics.RaycastAll(Camera.main.ViewportPointToRay(new Vector3(0, 1, 0)),float.MaxValue,layerMask);
-            for(int i=0; i < hit.Length; i++)
+            
+            if (hit.Length < 2)
             {
-                if (hit.Length < 2)
-                {
-                    //Debug.Log(hit[i].collider.gameObject.tag + "top left");
-                    mapCreator.dodajNoviElement();
-                }
-                
+                //Debug.Log(hit[i].collider.gameObject.tag + "top left");
+                mapCreator.dodajNoviElement();
             }
+                
+            
 
             hit = Physics.RaycastAll(Camera.main.ViewportPointToRay(new Vector3(1, 0, 0)),float.MaxValue,layerMask);
             for (int i = 0; i < hit.Length; i++)

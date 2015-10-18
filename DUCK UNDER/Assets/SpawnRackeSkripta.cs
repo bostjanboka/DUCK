@@ -22,10 +22,11 @@ public class SpawnRackeSkripta : MonoBehaviour {
 	}
 	void Start () {
         transform.parent.GetComponent<SirokaRandomSkripta>().nalozeno++;
-        if(transform.parent.GetComponent<SirokaRandomSkripta>().nalozeno> 3)
+        if(transform.parent.GetComponent<SirokaRandomSkripta>().nalozeno > 3)
         {
             transform.parent.GetComponent<nazajSkripta>().napolniListRec(transform.parent, 0);
             transform.parent.GetComponent<nazajSkripta>().setActiveObject(false);
+            transform.parent.GetComponent<nazajSkripta>().setCollisne(false);
         }
         
 	}

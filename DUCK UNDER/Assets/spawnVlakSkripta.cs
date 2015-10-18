@@ -70,7 +70,7 @@ public class spawnVlakSkripta : MonoBehaviour {
             {
                 GameObject zac = prvi;
 
-
+                terminator.enabled = true;
                 zac.transform.localPosition = zac.GetComponent<SkriptaPotujNaprej>().pozicija;
                 prvi = zac.GetComponent<SkriptaPotujNaprej>().nazaj;
 
@@ -87,6 +87,7 @@ public class spawnVlakSkripta : MonoBehaviour {
 	
 	public void postaviVozila(){
 		float vsota = 0;
+        terminator.enabled = true;
 		for (int i=0; i < 1; i++) {
 			vsota = i * vrniCas();
 			GameObject zac = prvi;

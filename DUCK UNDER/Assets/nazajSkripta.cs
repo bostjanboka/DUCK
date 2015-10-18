@@ -15,6 +15,8 @@ public class nazajSkripta : MonoBehaviour {
     public bool izbrisana = true;
 
     public bool jeAktivna = false;
+    bool colisniAktivni = false;
+    public float pokeColisn = 0;
 	void Start(){
 		//gameObject.SetActive (false);
         
@@ -54,17 +56,43 @@ public class nazajSkripta : MonoBehaviour {
         {
             i.enabled = active;
         }
+        if (!active)
+        {
+            setCollisne(false);
+            
+        }
+        else
+        {
+            listColiderjev[0].enabled = true;
+        }
+        jeAktivna = active;
+
+        
+    }
+
+    public void setCollisne(bool active)
+    {
+        colisniAktivni = active;
         foreach (Collider i in listColiderjev)
         {
             i.enabled = active;
         }
-        jeAktivna = active;
-        
     }
 
     void Update()
     {
-
+        if(pokeColisn > 0)
+        {
+            if (!colisniAktivni)
+            {
+                setCollisne(true);
+            }
+            pokeColisn -= Time.deltaTime;
+        }
+        else if (colisniAktivni)
+        {
+            setCollisne(false);
+        }
     }
 
 

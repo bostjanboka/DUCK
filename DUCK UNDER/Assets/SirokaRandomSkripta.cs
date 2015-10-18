@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SirokaRandomSkripta : MonoBehaviour {
 
@@ -18,6 +19,7 @@ public class SirokaRandomSkripta : MonoBehaviour {
     public GameObject perfect;
 
     public int nalozeno = 0;
+    public List<Collider> colizni;
 	void Awake () {
 		tabela = new GameObject[9];
 		tabela [0] = r1;
@@ -42,8 +44,12 @@ public class SirokaRandomSkripta : MonoBehaviour {
 			//zac.GetComponent<SpawnRackeSkripta>().postavi();
 		}
         //perfect.SetActive(false);
+        colizni = new List<Collider>();
+        
         
 	}
+
+    
     void Start()
     {
         //
@@ -76,4 +82,6 @@ public class SirokaRandomSkripta : MonoBehaviour {
     {
         return perfect.transform.position;
     }
+
+    
 }
