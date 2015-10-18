@@ -19,11 +19,12 @@ public class spawnVlakSkripta : MonoBehaviour {
 	public GameObject zadnji;
     int nalozeniAvti = 0;
     int stAvtov = 12;
-
+    nazajSkripta nazajSkrip;
     void Awake(){
         
         stAvtov = transform.parent.gameObject.GetComponent<izberiSpawnSkripta>().stAvtov;
         //transform.position += transform.forward * Random.Range (-zamik/2, zamik/2);
+        nazajSkrip = transform.parent.gameObject.GetComponent<nazajSkripta>();
 
     }
 	
@@ -39,9 +40,9 @@ public class spawnVlakSkripta : MonoBehaviour {
 		zacasna.transform.SetParent(transform.parent);
 		zacasna.GetComponent<SkriptaPotujNaprej>().speed = speed;
 		zacasna.GetComponent<SkriptaPotujNaprej>().pozicija = zacasna.transform.localPosition;
-		zacasna.SetActive(false);
+		//zacasna.SetActive(false);
 		
-		for (int i=0; i < stAvtov; i++) {
+		for (int i=1; i < stAvtov; i++) {
 			GameObject vozilo = Instantiate(mapCreator.getRandomVlak()) as GameObject;
 			Physics.IgnoreCollision(vozilo.GetComponent<Collider>(), terminator);
 			vozilo.transform.rotation = transform.rotation;
@@ -55,27 +56,31 @@ public class spawnVlakSkripta : MonoBehaviour {
 			
 		}
 		
-		postaviVozila ();
+		//postaviVozila ();
 		cas = vrniCas();
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		cas -= Time.deltaTime;
-		if (cas <= 0) {
-			GameObject zac = prvi;
+        if (nazajSkrip.jeAktivna)
+        {
+            cas -= Time.deltaTime;
+            if (cas <= 0)
+            {
+                GameObject zac = prvi;
 
 
-			zac.transform.localPosition = zac.GetComponent<SkriptaPotujNaprej>().pozicija;
-			prvi = zac.GetComponent<SkriptaPotujNaprej>().nazaj;
-			
-			zac.GetComponent<SkriptaPotujNaprej>().nazaj=null;
-			cas = vrniCas();
-			zac.SetActive(true);
-			Physics.IgnoreCollision(zac.GetComponent<Collider>(), terminator);
+                zac.transform.localPosition = zac.GetComponent<SkriptaPotujNaprej>().pozicija;
+                prvi = zac.GetComponent<SkriptaPotujNaprej>().nazaj;
 
-		}
+                //zac.GetComponent<SkriptaPotujNaprej>().nazaj=null;
+                cas = vrniCas();
+                zac.GetComponent<SkriptaPotujNaprej>().setActiveObject(true);
+                Physics.IgnoreCollision(zac.GetComponent<Collider>(), terminator);
+
+            }
+        }
 		
 		
 	}
@@ -90,9 +95,9 @@ public class spawnVlakSkripta : MonoBehaviour {
 			zac.transform.position += transform.forward*vsota;
 			
 			prvi = zac.GetComponent<SkriptaPotujNaprej>().nazaj;
-			zac.SetActive(true);
-			Physics.IgnoreCollision(zac.GetComponent<Collider>(), terminator);
-			zac.GetComponent<SkriptaPotujNaprej>().nazaj=null;
+			zac.GetComponent<SkriptaPotujNaprej>().setActiveObject(true);
+            Physics.IgnoreCollision(zac.GetComponent<Collider>(), terminator);
+			//zac.GetComponent<SkriptaPotujNaprej>().nazaj=null;
 			
 			
 		}

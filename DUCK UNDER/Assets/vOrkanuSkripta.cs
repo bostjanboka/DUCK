@@ -41,7 +41,7 @@ public class vOrkanuSkripta : MonoBehaviour {
 	}
 
 	void sirota(){
-		Debug.Log ("sirota");
+		//Debug.Log ("sirota");
 		transform.parent = orkanSkripta.parent;
 		enable = true;
 		speed = Random.Range (1.0f, 3.1f);

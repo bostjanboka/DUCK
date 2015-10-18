@@ -23,9 +23,12 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
     int nalozeniAvti = 0;
     int stAvtov = 12;
 
+    nazajSkripta nazajSkrip;
+
 	void Awake(){
 		prejsni = 0;
         stAvtov = transform.parent.gameObject.GetComponent<izberiSpawnSkripta>().stAvtov;
+        nazajSkrip = transform.parent.gameObject.GetComponent<nazajSkripta>();
 	}
 
 
@@ -65,26 +68,28 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
 		//cas = vrniZamik(prvi) / speed;
 		//cas = 4;
 		
-		Debug.Log ("set active");
+		//Debug.Log ("set active");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		cas -= Time.deltaTime;
-		if (cas <= 0 && prvi.GetComponent<SkriptaPotujNaprej>().nazaj) {
-			GameObject zac = prvi;
+        if (nazajSkrip.jeAktivna)
+        {
+            cas -= Time.deltaTime;
+            if (cas <= 0 && prvi.GetComponent<SkriptaPotujNaprej>().nazaj)
+            {
+                GameObject zac = prvi;
 
-			zac.transform.localPosition = zac.GetComponent<SkriptaPotujNaprej>().pozicija;
-			zac.GetComponent<SkriptaPotujNaprej>().speed=speed;
-			prvi = zac.GetComponent<SkriptaPotujNaprej>().nazaj;
-            //zac.SetActive(true);
-            zac.GetComponent<SkriptaPotujNaprej>().setActiveObject(true);
-			Physics.IgnoreCollision(zac.GetComponent<Collider>(), terminator);
-			//zac.GetComponent<SkriptaPotujNaprej>().nazaj=null;
-			cas = vrniZamik(prvi) / speed;
-		}
-
-
+                zac.transform.localPosition = zac.GetComponent<SkriptaPotujNaprej>().pozicija;
+                zac.GetComponent<SkriptaPotujNaprej>().speed = speed;
+                prvi = zac.GetComponent<SkriptaPotujNaprej>().nazaj;
+                //zac.SetActive(true);
+                zac.GetComponent<SkriptaPotujNaprej>().setActiveObject(true);
+                Physics.IgnoreCollision(zac.GetComponent<Collider>(), terminator);
+                //zac.GetComponent<SkriptaPotujNaprej>().nazaj=null;
+                cas = vrniZamik(prvi) / speed;
+            }
+        }
 	}
 
 	public void pospraviVse(int st,GameObject x){
@@ -119,7 +124,7 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
 	public float minimalniZamik(GameObject vozilo){
 		float minzamik = prejsni + vozilo.GetComponent<SkriptaPotujNaprej> ().vrniZamikPrvi();
 		prejsni = vozilo.GetComponent<SkriptaPotujNaprej>().vrniZamikZadnji();
-		Debug.Log ("prvi" + vozilo.GetComponent<SkriptaPotujNaprej> ().vrniZamikPrvi()+ " --- " +minzamik * 175 + " zamik "+minzamik);
+		//Debug.Log ("prvi" + vozilo.GetComponent<SkriptaPotujNaprej> ().vrniZamikPrvi()+ " --- " +minzamik * 175 + " zamik "+minzamik);
 		return minzamik * 175*vozilo.transform.localScale.z;
 
 	}

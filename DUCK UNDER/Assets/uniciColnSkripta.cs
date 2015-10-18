@@ -25,7 +25,7 @@ public class uniciColnSkripta : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other) {
 		if (other.CompareTag ("coln")) {
-			Debug.Log("unici");
+			//Debug.Log("unici");
 			spawn.zadnji.GetComponent<SkriptaPotujNaprej>().nazaj = other.gameObject;
 			other.gameObject.SetActive(false);
 			spawn.zadnji = other.gameObject;

@@ -6,32 +6,39 @@ public class nazajSkripta : MonoBehaviour {
 
     // Use this for initialization
     public List<Renderer> list;
+    public List<Collider> listColiderjev;
+    
     public GameObject nazaj;
 
 	public string id;
 
     public bool izbrisana = true;
-    public bool pobrisi = false;
-    bool brisi = false;
 
+    public bool jeAktivna = false;
 	void Start(){
 		//gameObject.SetActive (false);
-        if(id.Equals("trava") || id.Equals("crte"))
-        {
-            gameObject.SetActive(false);
-        }
+        
         list = new List<Renderer>();
+        listColiderjev = new List<Collider>();
         napolniListRec(transform,0);
-
+        if (id.Equals("trava") || id.Equals("crte"))
+        {
+            //gameObject.SetActive(false);
+            setActiveObject(false);
+        }
     }
 
-    void napolniListRec(Transform x, int stevec)
+    public void napolniListRec(Transform x, int stevec)
     {
         if(stevec == 0 || x.gameObject.GetComponent<nazajSkripta>() == null && x.gameObject.GetComponent<SkriptaPotujNaprej>() == null)
         {
             if (x.gameObject.GetComponent<Renderer>() != null)
             {
                 list.Add(x.gameObject.GetComponent<Renderer>());
+            }
+            if(x.gameObject.GetComponent<Collider>() != null)
+            {
+                listColiderjev.Add(x.gameObject.GetComponent<Collider>());
             }
             for (int i = 0; i < x.childCount; i++)
             {
@@ -47,15 +54,17 @@ public class nazajSkripta : MonoBehaviour {
         {
             i.enabled = active;
         }
+        foreach (Collider i in listColiderjev)
+        {
+            i.enabled = active;
+        }
+        jeAktivna = active;
+        
     }
 
     void Update()
     {
-        if (brisi != pobrisi)
-        {
-            setActiveObject(pobrisi);
-        }
-        brisi = pobrisi;
+
     }
 
 

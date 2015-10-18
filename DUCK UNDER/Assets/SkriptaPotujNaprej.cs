@@ -16,6 +16,8 @@ public class SkriptaPotujNaprej : MonoBehaviour {
     public List<Renderer> list;
 
     float speedEnable = 1;
+    float casZaKolesa = 0;
+    bool kolesaAktivna = false;
 
     void Start () {
         vozilo = gameObject.GetComponent<Collider>();
@@ -34,7 +36,7 @@ public class SkriptaPotujNaprej : MonoBehaviour {
         {
             RandomCreatorSkripta.nalozeno++;
             setActiveObject(false);
-            transform.parent.gameObject.SetActive(false);
+            transform.parent.gameObject.GetComponent <nazajSkripta>().setActiveObject(false);
         }
         else
         {
@@ -47,9 +49,36 @@ public class SkriptaPotujNaprej : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.position+= (transform.forward * speed * Time.deltaTime*speedEnable);
-
+        if(casZaKolesa > 0 && kolesaAktivna)
+        {
+            setKolesaEnable(true);
+        }else if(casZaKolesa <= 0 && kolesaAktivna)
+        {
+            setKolesaEnable(false);
+        }
+        else
+        {
+            casZaKolesa -= Time.deltaTime;
+        }
 
 	}
+
+    void setKolesaEnable(bool val)
+    {
+        for(int i=0; i < kolesa.Length; i++)
+        {
+            kolesa[i].enabled = val;
+        }
+        kolesaAktivna = val;
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("raca") && gameObject.activeSelf)
+        {
+            casZaKolesa = 1;
+        }
+    }
 
     void napolniListRec(Transform x, int stevec)
     {
@@ -74,10 +103,7 @@ public class SkriptaPotujNaprej : MonoBehaviour {
             i.enabled = active;
         }
         vozilo.enabled = active;
-        for(int i=0; i < kolesa.Length; i++)
-        {
-            kolesa[i].enabled = active;
-        }
+        
         if (active)
         {
             speedEnable = 1;
@@ -85,6 +111,7 @@ public class SkriptaPotujNaprej : MonoBehaviour {
         else
         {
             speedEnable = 0;
+            setKolesaEnable(false);
         }
     }
 

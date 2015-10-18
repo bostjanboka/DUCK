@@ -84,7 +84,7 @@ public class SlediRaciSkripta : MonoBehaviour {
             {
                 if (hit.Length < 2)
                 {
-                    Debug.Log(hit[i].collider.gameObject.tag + "top left");
+                    //Debug.Log(hit[i].collider.gameObject.tag + "top left");
                     mapCreator.dodajNoviElement();
                 }
                 
@@ -95,7 +95,7 @@ public class SlediRaciSkripta : MonoBehaviour {
             {
                 if (hit[i].point != null && (hit[i].collider.gameObject.CompareTag("siroka") || hit[i].collider.gameObject.CompareTag("tla")))
                 {
-                    Debug.Log(hit[i].collider.gameObject.tag + "bot right");
+                    //Debug.Log(hit[i].collider.gameObject.tag + "bot right");
                     unicevalka.transform.position = hit[i].point;
                 }
 
@@ -106,7 +106,7 @@ public class SlediRaciSkripta : MonoBehaviour {
             {
                 if (hit[i].point != null && (hit[i].collider.gameObject.CompareTag("siroka") || hit[i].collider.gameObject.CompareTag("tla")))
                 {
-                    Debug.Log(hit[i].collider.gameObject.tag + "top right");
+                    //Debug.Log(hit[i].collider.gameObject.tag + "top right");
                     unicevalkaZ.transform.position = hit[i].point;
                 }
 

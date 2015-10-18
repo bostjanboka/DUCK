@@ -16,7 +16,7 @@ public class proba : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.CompareTag ("voda")) {
-			Debug.Log("dela kolider ampak nocem");
+			//Debug.Log("dela kolider ampak nocem");
 		}
 	}
 }

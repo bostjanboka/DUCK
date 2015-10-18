@@ -102,7 +102,7 @@ public class orkanSkripta : MonoBehaviour {
 				otrok.transform.localPosition = obj.transform.GetChild(i).transform.localPosition;
 				otrok.transform.localRotation = obj.transform.GetChild(i).transform.localRotation;
 				otrok.transform.localScale = obj.transform.GetChild(i).transform.localScale;
-				Debug.Log("delam otroke");
+				//Debug.Log("delam otroke");
 			}
 		}
 

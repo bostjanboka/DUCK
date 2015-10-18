@@ -167,7 +167,7 @@ public class RandomCreatorSkripta : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (nalozeno + " nalozilo");
+		//Debug.Log (nalozeno + " nalozilo");
         if(list.Count < 5 && nalozeno == 24)
         {
             dodajNoviElement();
@@ -183,7 +183,7 @@ public class RandomCreatorSkripta : MonoBehaviour {
 	}
 
 	void dodajElement(GameObject spawn, GameObject spawnTabela){
-		spawn.SetActive (true);
+		spawn.GetComponent<nazajSkripta>().setActiveObject(true);
 		Mesh mesh = spawn.GetComponent<MeshFilter>().sharedMesh;
 		Bounds bounds = mesh.bounds;
 		vec.z+= bounds.size.z*spawn.transform.localScale.z;
@@ -216,7 +216,7 @@ public class RandomCreatorSkripta : MonoBehaviour {
 		vDelovanju = false;
 		for (int i=0; i < list.Count; i++) {
 			GameObject brisem = list[i];
-			Debug.Log("prisem primerek");
+			//Debug.Log("prisem primerek");
 			string id = brisem.GetComponent<nazajSkripta>().id;
 
 			if(id.Equals("cesta")){
@@ -240,14 +240,14 @@ public class RandomCreatorSkripta : MonoBehaviour {
 				zadnjiCrte = brisem;
 			}
             brisem.GetComponent<nazajSkripta>().izbrisana = true;
-            brisem.SetActive(false);
+            brisem.GetComponent<nazajSkripta>().setActiveObject(false);
 
-		}
+        }
 		list.Clear ();
         zadnjihX = new GameObject[5];
 		vec = Vector3.zero;
 		stTrav = 0;
-		Kmetija.SetActive (true);
+		Kmetija.GetComponent<nazajSkripta>().setActiveObject(false); ;
 		list.Add (Kmetija);
 		//StartPostavitev ();
         zaIzbrisatObjekt = null;
@@ -307,7 +307,7 @@ public class RandomCreatorSkripta : MonoBehaviour {
 
         list.RemoveAt(0);
             
-            brisem.SetActive(false);
+        brisem.GetComponent<nazajSkripta>().setActiveObject(false);
         
 
     }

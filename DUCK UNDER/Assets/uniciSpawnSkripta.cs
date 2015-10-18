@@ -18,7 +18,7 @@ public class uniciSpawnSkripta : MonoBehaviour {
 
 	void OnTriggerExit(Collider other) {
 		if (other.gameObject.CompareTag ("vozilo")) {
-			Debug.Log("unici");
+			//Debug.Log("unici");
             //other.gameObject.SetActive(false);
             other.gameObject.GetComponent<SkriptaPotujNaprej>().setActiveObject(false);
 		}

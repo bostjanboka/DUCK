@@ -16,7 +16,9 @@ public class SirokaRandomSkripta : MonoBehaviour {
 
 	GameObject[] tabela;
     public GameObject perfect;
-	void Start () {
+
+    public int nalozeno = 0;
+	void Awake () {
 		tabela = new GameObject[9];
 		tabela [0] = r1;
 		tabela [1] = r2;
@@ -39,9 +41,15 @@ public class SirokaRandomSkripta : MonoBehaviour {
 			zac.transform.localPosition = poz;
 			//zac.GetComponent<SpawnRackeSkripta>().postavi();
 		}
-        perfect.SetActive(false);
-		gameObject.SetActive (false);
+        //perfect.SetActive(false);
+        
 	}
+    void Start()
+    {
+        //
+        //gameObject.GetComponent<nazajSkripta>().setActiveObject(false);
+        //Debug.Log("dajem false");
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -50,14 +58,14 @@ public class SirokaRandomSkripta : MonoBehaviour {
 
 	public void reset(){
 		SpawnRackeSkripta[] comp = transform.GetComponentsInChildren<SpawnRackeSkripta> ();
-        perfect.SetActive(false);
+        //perfect.SetActive(false);
         for (int i=0; i < comp.Length; i++) {
 			comp[i].pocisti();
 		}
 	}
 
 	public void postavi(){
-        perfect.SetActive(false);
+        //perfect.SetActive(false);
         SpawnRackeSkripta[] comp = transform.GetComponentsInChildren<SpawnRackeSkripta> ();
 		for (int i=0; i < 2; i++) {
 			comp[i].postavi();

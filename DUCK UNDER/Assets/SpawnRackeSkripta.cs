@@ -21,7 +21,13 @@ public class SpawnRackeSkripta : MonoBehaviour {
 		naredi ();
 	}
 	void Start () {
-	
+        transform.parent.GetComponent<SirokaRandomSkripta>().nalozeno++;
+        if(transform.parent.GetComponent<SirokaRandomSkripta>().nalozeno> 3)
+        {
+            transform.parent.GetComponent<nazajSkripta>().napolniListRec(transform.parent, 0);
+            transform.parent.GetComponent<nazajSkripta>().setActiveObject(false);
+        }
+        
 	}
 	
 	// Update is called once per frame
