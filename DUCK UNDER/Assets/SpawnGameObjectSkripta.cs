@@ -94,7 +94,7 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
 
 	public void pospraviVse(int st,GameObject x){
 		//x.SetActive (false);
-        x.GetComponent<SkriptaPotujNaprej>().setActiveObject(true);
+        x.GetComponent<SkriptaPotujNaprej>().setActiveObject(false);
         if (st > 0) {
 			pospraviVse (st-1,x.GetComponent<SkriptaPotujNaprej> ().nazaj);
 		}

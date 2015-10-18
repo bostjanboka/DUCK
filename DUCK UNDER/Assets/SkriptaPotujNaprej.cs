@@ -49,7 +49,7 @@ public class SkriptaPotujNaprej : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.position+= (transform.forward * speed * Time.deltaTime*speedEnable);
-        if(casZaKolesa > 0 && kolesaAktivna)
+        if(casZaKolesa > 0 && !kolesaAktivna)
         {
             setKolesaEnable(true);
         }else if(casZaKolesa <= 0 && kolesaAktivna)

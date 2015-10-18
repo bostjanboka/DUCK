@@ -247,7 +247,7 @@ public class RandomCreatorSkripta : MonoBehaviour {
         zadnjihX = new GameObject[5];
 		vec = Vector3.zero;
 		stTrav = 0;
-		Kmetija.GetComponent<nazajSkripta>().setActiveObject(false); ;
+		Kmetija.GetComponent<nazajSkripta>().setActiveObject(true); 
 		list.Add (Kmetija);
 		//StartPostavitev ();
         zaIzbrisatObjekt = null;

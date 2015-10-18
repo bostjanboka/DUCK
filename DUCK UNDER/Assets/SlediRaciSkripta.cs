@@ -21,6 +21,8 @@ public class SlediRaciSkripta : MonoBehaviour {
     public GameObject unicevalkaZ;
     public RandomCreatorSkripta mapCreator;
 
+    int layerMask = 1 << 9;
+
 	void Start () {
 
 		startPoz = transform.position;
@@ -42,6 +44,7 @@ public class SlediRaciSkripta : MonoBehaviour {
         {
             ekran = 2;
         }
+
     }
 	
 	// Update is called once per frame
@@ -69,7 +72,8 @@ public class SlediRaciSkripta : MonoBehaviour {
 			Debug.DrawRay(transform.position, transform.forward, Color.green);
 			
 			RaycastHit[] hit;
-			hit = Physics.RaycastAll(ray);
+
+			hit = Physics.RaycastAll(ray,float.MaxValue,layerMask);
 			MeniSkripta.stejTocke=true;
 			for (int i=0; i < hit.Length; i++) {
 
@@ -79,7 +83,7 @@ public class SlediRaciSkripta : MonoBehaviour {
 				}
 			}
 
-            hit = Physics.RaycastAll(Camera.main.ViewportPointToRay(new Vector3(0, 1, 0)));
+            hit = Physics.RaycastAll(Camera.main.ViewportPointToRay(new Vector3(0, 1, 0)),float.MaxValue,layerMask);
             for(int i=0; i < hit.Length; i++)
             {
                 if (hit.Length < 2)
@@ -90,7 +94,7 @@ public class SlediRaciSkripta : MonoBehaviour {
                 
             }
 
-            hit = Physics.RaycastAll(Camera.main.ViewportPointToRay(new Vector3(1, 0, 0)));
+            hit = Physics.RaycastAll(Camera.main.ViewportPointToRay(new Vector3(1, 0, 0)),float.MaxValue,layerMask);
             for (int i = 0; i < hit.Length; i++)
             {
                 if (hit[i].point != null && (hit[i].collider.gameObject.CompareTag("siroka") || hit[i].collider.gameObject.CompareTag("tla")))
@@ -101,7 +105,7 @@ public class SlediRaciSkripta : MonoBehaviour {
 
             }
 
-            hit = Physics.RaycastAll(Camera.main.ViewportPointToRay(new Vector3(1, 1, 0)));
+            hit = Physics.RaycastAll(Camera.main.ViewportPointToRay(new Vector3(1, 1, 0)),float.MaxValue,layerMask);
             for (int i = 0; i < hit.Length; i++)
             {
                 if (hit[i].point != null && (hit[i].collider.gameObject.CompareTag("siroka") || hit[i].collider.gameObject.CompareTag("tla")))
