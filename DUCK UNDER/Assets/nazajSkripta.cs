@@ -38,7 +38,7 @@ public class nazajSkripta : MonoBehaviour {
             {
                 list.Add(x.gameObject.GetComponent<Renderer>());
             }
-            if(x.gameObject.GetComponent<Collider>() != null)
+            if(x.gameObject.GetComponent<Collider>() != null && !x.gameObject.name.Equals("terminator"))
             {
                 listColiderjev.Add(x.gameObject.GetComponent<Collider>());
             }
