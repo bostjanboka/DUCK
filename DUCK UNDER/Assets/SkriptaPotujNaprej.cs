@@ -17,7 +17,10 @@ public class SkriptaPotujNaprej : MonoBehaviour {
 
     float speedEnable = 1;
     float casZaKolesa = 0;
+    float casZaUnicit = 0;
+    float dolgaCesta = 175;
     bool kolesaAktivna = false;
+    bool aktivno = false;
 
     void Start () {
         vozilo = gameObject.GetComponent<Collider>();
@@ -61,7 +64,21 @@ public class SkriptaPotujNaprej : MonoBehaviour {
             casZaKolesa -= Time.deltaTime;
         }
 
+        if(aktivno && casZaUnicit <= 0)
+        {
+            setActiveObject(false);
+        }
+        casZaUnicit -= Time.deltaTime;
+
 	}
+
+    public void postaviSe(float speedX, float unicit)
+    {
+        speed = speedX;
+        casZaUnicit = unicit;
+        setActiveObject(true);
+        
+    }
 
     void setKolesaEnable(bool val)
     {
@@ -113,6 +130,7 @@ public class SkriptaPotujNaprej : MonoBehaviour {
             speedEnable = 0;
             setKolesaEnable(false);
         }
+        aktivno = active;
     }
 
     public float vrniZamikPrvi(){
