@@ -10,7 +10,7 @@ public class spawnVlakSkripta : MonoBehaviour {
 	
 
 	public float speed=5;
-	Collider terminator;
+    float dolgaCesta = 180;
 	float cas;
 	
 	
@@ -30,11 +30,11 @@ public class spawnVlakSkripta : MonoBehaviour {
 	
 	void Start () {
         mapCreator = GameObject.Find("MapCreator").GetComponent<RandomCreatorSkripta>();
-		terminator = transform.FindChild ("terminator").GetComponent<Collider> ();
+		
 		GameObject zacasna;
 		prvi = Instantiate(mapCreator.getRandomVlak()) as GameObject;
 		zacasna = prvi;
-		Physics.IgnoreCollision(zacasna.GetComponent<Collider>(), terminator);
+		
 		zacasna.transform.rotation = transform.rotation;
 		zacasna.transform.position = transform.position;
 		zacasna.transform.SetParent(transform.parent);
@@ -44,7 +44,7 @@ public class spawnVlakSkripta : MonoBehaviour {
 		
 		for (int i=1; i < stAvtov; i++) {
 			GameObject vozilo = Instantiate(mapCreator.getRandomVlak()) as GameObject;
-			Physics.IgnoreCollision(vozilo.GetComponent<Collider>(), terminator);
+			
 			vozilo.transform.rotation = transform.rotation;
 			vozilo.transform.position = transform.position;
 			vozilo.transform.SetParent(transform.parent);
@@ -55,7 +55,7 @@ public class spawnVlakSkripta : MonoBehaviour {
 			zadnji = zacasna;
 			
 		}
-		
+        zadnji.GetComponent<SkriptaPotujNaprej>().nazaj = prvi;
 		//postaviVozila ();
 		cas = vrniCas();
 		
@@ -70,14 +70,14 @@ public class spawnVlakSkripta : MonoBehaviour {
             {
                 GameObject zac = prvi;
 
-                terminator.enabled = true;
+                
                 zac.transform.localPosition = zac.GetComponent<SkriptaPotujNaprej>().pozicija;
                 prvi = zac.GetComponent<SkriptaPotujNaprej>().nazaj;
 
                 //zac.GetComponent<SkriptaPotujNaprej>().nazaj=null;
                 cas = vrniCas();
                 zac.GetComponent<SkriptaPotujNaprej>().setActiveObject(true);
-                Physics.IgnoreCollision(zac.GetComponent<Collider>(), terminator);
+                zac.GetComponent<SkriptaPotujNaprej>().postaviSe(speed, dolgaCesta / speed);
 
             }
         }
@@ -87,7 +87,7 @@ public class spawnVlakSkripta : MonoBehaviour {
 	
 	public void postaviVozila(){
 		float vsota = 0;
-        terminator.enabled = true;
+        
 		for (int i=0; i < 1; i++) {
 			vsota = i * vrniCas();
 			GameObject zac = prvi;
@@ -97,11 +97,11 @@ public class spawnVlakSkripta : MonoBehaviour {
 			
 			prvi = zac.GetComponent<SkriptaPotujNaprej>().nazaj;
 			zac.GetComponent<SkriptaPotujNaprej>().setActiveObject(true);
-            Physics.IgnoreCollision(zac.GetComponent<Collider>(), terminator);
-			//zac.GetComponent<SkriptaPotujNaprej>().nazaj=null;
-			
-			
-		}
+            zac.GetComponent<SkriptaPotujNaprej>().postaviSe(speed, dolgaCesta / speed);
+            //zac.GetComponent<SkriptaPotujNaprej>().nazaj=null;
+
+
+        }
 	}
 
 	public float vrniCas(){
