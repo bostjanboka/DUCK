@@ -90,17 +90,17 @@ public class RackaSkripta : MonoBehaviour {
 			} else {
 				InputKey.tocka.SetActive(false);
 			}
-			if (tocket.localScale.z < maxScale) {
+			/*if (tocket.localScale.z < maxScale) {
 				Vector3 zacS = tocket.localScale;
 				zacS.z += 1 / casScale * Time.deltaTime;
 				tocket.localScale = zacS;
-			}
+			}*/
 		} else {
-			if (tocket.localScale.z > 1) {
+			/*if (tocket.localScale.z > 1) {
 				Vector3 zacS = tocket.localScale;
 				zacS.z -= 1 * Time.deltaTime;
 				tocket.localScale = zacS;
-			}
+			}*/
 		}
 
 
@@ -150,9 +150,9 @@ public class RackaSkripta : MonoBehaviour {
 		}
         for(int i=0; i < otroci.Length; i++)
         {
-            if (otroci[i].activeSelf)
+            if (otroci[i] && otroci[i].activeSelf)
             {
-                otroci[i].GetComponent<OtrokSkripta>().ubijSe();
+                //otroci[i].GetComponent<OtrokSkripta>().ubijSe();
             }
         }
 		gameObject.SetActive (true);
@@ -175,8 +175,12 @@ public class RackaSkripta : MonoBehaviour {
 	void postaviOtroke(){
 		for(int i =0; i < tocke.Length; i++)
         {
-            otroci[i] = Instantiate(otrok, tocke[i].transform.position, transform.rotation) as GameObject;
-            otroci[i].GetComponent<OtrokSkripta>().zasleduj = tocke[i];
+            if (tocke[i].activeSelf)
+            {
+                otroci[i] = Instantiate(otrok, tocke[i].transform.position, transform.rotation) as GameObject;
+                otroci[i].GetComponent<OtrokSkripta>().zasleduj = tocke[i];
+            }
+            
         }
 	}
 

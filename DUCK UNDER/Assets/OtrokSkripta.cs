@@ -17,16 +17,19 @@ public class OtrokSkripta : MonoBehaviour {
 
     GameObject raca;
     GameObject sirokaExit;
+    Collider sfera;
 	void Awake(){
 		povozenOtrok = Instantiate (povozenaRaca) as GameObject;
 		audio2 = GameObject.Find("Audio").GetComponent<AudioSkripta>();
 	}
 	void Start () {
 		smer = Vector3.zero;
-		if(zasleduj)
-			zasleduj.GetComponent<ZasledujeMeSkripta> ().ZasledujeMe = gameObject;
+		//if(zasleduj)
+			//zasleduj.GetComponent<ZasledujeMeSkripta> ().ZasledujeMe = gameObject;
         raca = GameObject.Find("raca");
-        ubijSe();
+        //ubijSe();
+        speed += Random.Range(-3f, 1f);
+        sfera = transform.FindChild("GameObject").GetComponent<Collider>();
 	}
 	
 	// Update is called once per frame
@@ -35,12 +38,25 @@ public class OtrokSkripta : MonoBehaviour {
         smer.y = transform.position.y;
 		float step = speed*Time.deltaTime;
 
-		Vector3 newDir = Vector3.RotateTowards(transform.position,smer,60,1.0f);
-		transform.rotation = Quaternion.LookRotation(newDir);
+		Vector3 newDir = Vector3.RotateTowards(transform.position,smer,60,0f);
+        transform.rotation = Quaternion.LookRotation(zasleduj.transform.position-transform.position,Vector3.up);
             
-        Vector3 pos = Vector3.MoveTowards(transform.position,zasleduj.transform.position,step);
+        
         //pos.y = transform.position.y;
-        transform.position = pos;
+        
+        if(Vector3.Distance(zasleduj.transform.position,transform.position) > 1f)
+        {
+            Vector3 pos = Vector3.MoveTowards(transform.position, zasleduj.transform.position, step);
+            transform.position = pos;
+            if (!sfera.enabled)
+            {
+               // sfera.enabled = true;
+            }
+        }
+        else
+        {
+           // sfera.enabled = false;
+        }
 		
 	}
 
