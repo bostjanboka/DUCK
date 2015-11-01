@@ -32,6 +32,44 @@ ModelImporter:
     100048: //RootNode
     100050: Mesh18
     100052: Mesh19
+    100054: Group2
+    100056: Group3
+    100058: Group4
+    100060: Group5
+    100062: Mesh20
+    100064: Mesh21
+    100066: Mesh22
+    100068: Mesh23
+    100070: Mesh24
+    100072: Mesh25
+    100074: Mesh26
+    100076: Mesh27
+    100078: Mesh28
+    100080: Mesh29
+    100082: Mesh30
+    100084: Mesh31
+    100086: Mesh32
+    100088: Mesh33
+    100090: Mesh34
+    100092: Mesh35
+    100094: Mesh36
+    100096: Mesh37
+    100098: Mesh38
+    100100: Mesh39
+    100102: Mesh40
+    100104: Mesh41
+    100106: Mesh42
+    100108: Mesh43
+    100110: Mesh44
+    100112: Mesh45
+    100114: Mesh46
+    100116: Mesh47
+    100118: Mesh48
+    100120: Mesh49
+    100122: Mesh50
+    100124: Mesh51
+    100126: Mesh52
+    100128: Mesh53
     400000: Camera
     400002: Group1
     400004: Mesh01
@@ -59,6 +97,44 @@ ModelImporter:
     400048: //RootNode
     400050: Mesh18
     400052: Mesh19
+    400054: Group2
+    400056: Group3
+    400058: Group4
+    400060: Group5
+    400062: Mesh20
+    400064: Mesh21
+    400066: Mesh22
+    400068: Mesh23
+    400070: Mesh24
+    400072: Mesh25
+    400074: Mesh26
+    400076: Mesh27
+    400078: Mesh28
+    400080: Mesh29
+    400082: Mesh30
+    400084: Mesh31
+    400086: Mesh32
+    400088: Mesh33
+    400090: Mesh34
+    400092: Mesh35
+    400094: Mesh36
+    400096: Mesh37
+    400098: Mesh38
+    400100: Mesh39
+    400102: Mesh40
+    400104: Mesh41
+    400106: Mesh42
+    400108: Mesh43
+    400110: Mesh44
+    400112: Mesh45
+    400114: Mesh46
+    400116: Mesh47
+    400118: Mesh48
+    400120: Mesh49
+    400122: Mesh50
+    400124: Mesh51
+    400126: Mesh52
+    400128: Mesh53
     2300000: Camera
     2300002: Group1
     2300004: Mesh01
@@ -85,6 +161,44 @@ ModelImporter:
     2300046: Model
     2300048: Mesh18
     2300050: Mesh19
+    2300052: Group2
+    2300054: Group3
+    2300056: Group4
+    2300058: Group5
+    2300060: Mesh20
+    2300062: Mesh21
+    2300064: Mesh22
+    2300066: Mesh23
+    2300068: Mesh24
+    2300070: Mesh25
+    2300072: Mesh26
+    2300074: Mesh27
+    2300076: Mesh28
+    2300078: Mesh29
+    2300080: Mesh30
+    2300082: Mesh31
+    2300084: Mesh32
+    2300086: Mesh33
+    2300088: Mesh34
+    2300090: Mesh35
+    2300092: Mesh36
+    2300094: Mesh37
+    2300096: Mesh38
+    2300098: Mesh39
+    2300100: Mesh40
+    2300102: Mesh41
+    2300104: Mesh42
+    2300106: Mesh43
+    2300108: Mesh44
+    2300110: Mesh45
+    2300112: Mesh46
+    2300114: Mesh47
+    2300116: Mesh48
+    2300118: Mesh49
+    2300120: Mesh50
+    2300122: Mesh51
+    2300124: Mesh52
+    2300126: Mesh53
     3300000: Camera
     3300002: Group1
     3300004: Mesh01
@@ -111,6 +225,44 @@ ModelImporter:
     3300046: Model
     3300048: Mesh18
     3300050: Mesh19
+    3300052: Group2
+    3300054: Group3
+    3300056: Group4
+    3300058: Group5
+    3300060: Mesh20
+    3300062: Mesh21
+    3300064: Mesh22
+    3300066: Mesh23
+    3300068: Mesh24
+    3300070: Mesh25
+    3300072: Mesh26
+    3300074: Mesh27
+    3300076: Mesh28
+    3300078: Mesh29
+    3300080: Mesh30
+    3300082: Mesh31
+    3300084: Mesh32
+    3300086: Mesh33
+    3300088: Mesh34
+    3300090: Mesh35
+    3300092: Mesh36
+    3300094: Mesh37
+    3300096: Mesh38
+    3300098: Mesh39
+    3300100: Mesh40
+    3300102: Mesh41
+    3300104: Mesh42
+    3300106: Mesh43
+    3300108: Mesh44
+    3300110: Mesh45
+    3300112: Mesh46
+    3300114: Mesh47
+    3300116: Mesh48
+    3300118: Mesh49
+    3300120: Mesh50
+    3300122: Mesh51
+    3300124: Mesh52
+    3300126: Mesh53
     4300000: Model
     4300002: Mesh03
     4300004: Mesh02
@@ -137,6 +289,44 @@ ModelImporter:
     4300046: Group1
     4300048: Mesh19
     4300050: Mesh18
+    4300052: Mesh22
+    4300054: Mesh21
+    4300056: Mesh37
+    4300058: Mesh36
+    4300060: Mesh44
+    4300062: Mesh43
+    4300064: Mesh49
+    4300066: Mesh48
+    4300068: Mesh53
+    4300070: Mesh52
+    4300072: Mesh51
+    4300074: Mesh50
+    4300076: Mesh47
+    4300078: Mesh46
+    4300080: Mesh45
+    4300082: Mesh42
+    4300084: Mesh41
+    4300086: Mesh40
+    4300088: Mesh39
+    4300090: Mesh38
+    4300092: Mesh35
+    4300094: Mesh34
+    4300096: Mesh33
+    4300098: Mesh32
+    4300100: Mesh31
+    4300102: Mesh30
+    4300104: Mesh29
+    4300106: Mesh28
+    4300108: Mesh27
+    4300110: Mesh26
+    4300112: Mesh25
+    4300114: Mesh24
+    4300116: Mesh23
+    4300118: Mesh20
+    4300120: Group5
+    4300122: Group4
+    4300124: Group3
+    4300126: Group2
   materials:
     importMaterials: 1
     materialName: 0
