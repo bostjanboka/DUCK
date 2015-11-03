@@ -252,6 +252,8 @@ public class RandomCreatorSkripta : MonoBehaviour {
 		//StartPostavitev ();
         zaIzbrisatObjekt = null;
         zaIzbrisatObjektZ = null;
+        prejsni = null;
+        stetjeTrave = 0;
 
 	}
 

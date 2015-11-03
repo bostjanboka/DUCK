@@ -102,7 +102,7 @@ public class SkriptaPotujNaprej : MonoBehaviour {
         }
         casZaUnicit -= Time.deltaTime;
 
-        if (transperent && transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>() != null)
+        if (transperent && transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>() != null &&false)
         {
             transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = m;
         }
@@ -167,6 +167,7 @@ public class SkriptaPotujNaprej : MonoBehaviour {
         {
             speedEnable = 0;
             setKolesaEnable(false);
+            enabled = false;
         }
         aktivno = active;
     }

@@ -9,8 +9,9 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
 	float med=35;
 	float max=45;
 
-	//public float zamik=45;
-	public float speed=5;
+    //public float zamik=45;
+    public float conSpeed = 10;
+	float speed=5;
 
 	
 	float cas;
@@ -74,6 +75,7 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
             if (cas <= 0 && prvi.GetComponent<SkriptaPotujNaprej>().nazaj)
             {
                 GameObject zac = prvi;
+                zac.GetComponent<SkriptaPotujNaprej>().enabled = true;
                 zac.transform.localPosition = zac.GetComponent<SkriptaPotujNaprej>().pozicija;
                 zac.GetComponent<SkriptaPotujNaprej>().postaviSe(speed, dolgaCesta/speed);
                 prvi = zac.GetComponent<SkriptaPotujNaprej>().nazaj;
@@ -93,13 +95,13 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
 
 	public void postaviVozila(){
 		float vsota = 0;
-        
+        speed = conSpeed + Random.Range(-4, 5);
 		for (int i=0; i < 3; i++) {
 			GameObject zac = prvi;
 			vsota += vrniZamik(zac);
 
-			
-			zac.transform.localPosition = zac.GetComponent<SkriptaPotujNaprej>().pozicija;
+            zac.GetComponent<SkriptaPotujNaprej>().enabled = true;
+            zac.transform.localPosition = zac.GetComponent<SkriptaPotujNaprej>().pozicija;
 			zac.transform.position += transform.forward*vsota;
             zac.GetComponent<SkriptaPotujNaprej>().postaviSe(speed, dolgaCesta/speed - vsota/speed);
             prvi = zac.GetComponent<SkriptaPotujNaprej>().nazaj;

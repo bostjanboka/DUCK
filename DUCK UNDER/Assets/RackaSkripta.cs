@@ -152,14 +152,16 @@ public class RackaSkripta : MonoBehaviour {
         {
             if (otroci[i] && otroci[i].activeSelf)
             {
-                //otroci[i].GetComponent<OtrokSkripta>().ubijSe();
+                otroci[i].GetComponent<OtrokSkripta>().ubijSe();
             }
         }
-		gameObject.SetActive (true);
+        
+        gameObject.SetActive (true);
 		povozena.SetActive (false);
-		teren.pobrisiVse ();
+        
 		transform.position = startPoz;
-		kamera.Reset ();
+        postaviOtroke();
+        kamera.Reset ();
 		meni.play ();
 		
 		orkan.Reset ();
@@ -167,6 +169,7 @@ public class RackaSkripta : MonoBehaviour {
 		zgubil = false;
 		cas = 0;
         stRackPreckalo = 0;
+        teren.pobrisiVse();
         scoreLoadingImage.score = 0;
 
 

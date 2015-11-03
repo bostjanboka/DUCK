@@ -49,7 +49,7 @@ public class izberiSpawnSkripta : MonoBehaviour {
 
 	public void nastaviSpawnInHitrost(float povecava){
 		SpawnGameObjectSkripta[] spawn1 = GetComponentsInChildren<SpawnGameObjectSkripta> ();
-		spawn1[izbira].speed+= povecava;
+		//spawn1[izbira].speed+= povecava;
 	}
 
 	public void pobrisiVozila(){

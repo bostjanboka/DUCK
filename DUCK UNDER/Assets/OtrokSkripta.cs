@@ -18,7 +18,9 @@ public class OtrokSkripta : MonoBehaviour {
     GameObject raca;
     GameObject sirokaExit;
     Collider sfera;
-	void Awake(){
+    Vector3 randomRaca;
+    float time=0;
+    void Awake(){
 		povozenOtrok = Instantiate (povozenaRaca) as GameObject;
 		audio2 = GameObject.Find("Audio").GetComponent<AudioSkripta>();
 	}
@@ -46,7 +48,16 @@ public class OtrokSkripta : MonoBehaviour {
         
         if(Vector3.Distance(zasleduj.transform.position,transform.position) > 1f)
         {
-            Vector3 pos = Vector3.MoveTowards(transform.position, zasleduj.transform.position, step);
+            time += Time.deltaTime;
+            if(time > 0.2f)
+            {
+                randomRaca = zasleduj.transform.position;
+                randomRaca.x += Random.Range(-1f, 1f);
+                randomRaca.z += Random.Range(-1f, 1f);
+                time = 0;
+            }
+            
+            Vector3 pos = Vector3.MoveTowards(transform.position, randomRaca, step);
             transform.position = pos;
             if (!sfera.enabled)
             {
