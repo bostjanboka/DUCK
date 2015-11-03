@@ -22,6 +22,7 @@ public class SlediRaciSkripta : MonoBehaviour {
     public RandomCreatorSkripta mapCreator;
 
     int layerMask = 1 << 9;
+    int layerMaskR = 3 << 8;
 
 	void Start () {
 
@@ -73,15 +74,17 @@ public class SlediRaciSkripta : MonoBehaviour {
 			
 			RaycastHit[] hit;
 
-			hit = Physics.RaycastAll(ray,float.MaxValue,layerMask);
+			hit = Physics.RaycastAll(ray,float.MaxValue,layerMaskR);
 			MeniSkripta.stejTocke=true;
 			for (int i=0; i < hit.Length; i++) {
 
 				if (hit [i].point != null && hit [i].collider.gameObject.CompareTag ("siroka")) {
                     hit[i].collider.gameObject.GetComponent<nazajSkripta>().pokeColisn = 1;
                     MeniSkripta.stejTocke=false;
-					break;
-				}
+				}else if (hit[i].collider.gameObject.GetComponent<SkriptaPotujNaprej>() != null)
+                {
+                    hit[i].collider.gameObject.GetComponent<SkriptaPotujNaprej>().setTransparentno();
+                }
 			}
 
             hit = Physics.RaycastAll(Camera.main.ViewportPointToRay(new Vector3(0, 1, 0)),float.MaxValue,layerMask);

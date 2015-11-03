@@ -21,6 +21,12 @@ public class SkriptaPotujNaprej : MonoBehaviour {
     float dolgaCesta = 175;
     bool kolesaAktivna = false;
     bool aktivno = false;
+    public Material meterialDodan;
+
+    int idBarve = 0;
+    bool transperent = false;
+    Material[] m;
+    Material[] mA;
 
     void Start () {
         vozilo = gameObject.GetComponent<Collider>();
@@ -45,8 +51,34 @@ public class SkriptaPotujNaprej : MonoBehaviour {
         {
             setActiveObject(false);
         }
-        
+        if (transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>() != null)
+        {
+            idBarve = DodajMaterialSkripta.getStevilkaBarve();
+            m = transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().sharedMaterials;
+            mA = new Material[m.Length];
+            for (int j = 0; j < m.Length; j++)
+            {
+                mA[j] = m[j];
+                if (m[j].name.Equals("FrontCol"))
+                {
+                    m[j] = DodajMaterialSkripta.getMaterial(idBarve);
+                    mA[j] = DodajMaterialSkripta.getMaterialA(idBarve);
+                }
+            }
+            
+            transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = m;
+        }
+            
 
+    }
+
+    public void setTransparentno()
+    {
+        if (!transperent && transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>() != null)
+        {
+            transperent = true;
+            transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = mA;
+        }
     }
 	
 	// Update is called once per frame
@@ -69,6 +101,12 @@ public class SkriptaPotujNaprej : MonoBehaviour {
             setActiveObject(false);
         }
         casZaUnicit -= Time.deltaTime;
+
+        if (transperent && transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>() != null)
+        {
+            transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = m;
+        }
+        transperent = false;
 
 	}
 

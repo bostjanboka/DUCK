@@ -37,7 +37,7 @@ public class RandomCreatorSkripta : MonoBehaviour {
 	public GameObject prviTrava;
 	public GameObject zadnjiTrava;
 	
-
+    
 
 	public static int nalozeno=0;
     public static GameObject[] zadnjihX;
