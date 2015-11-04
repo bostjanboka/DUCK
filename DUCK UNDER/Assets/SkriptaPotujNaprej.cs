@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class SkriptaPotujNaprej : MonoBehaviour {
 
     // Use this for initialization
+    public int idVozila;
     public Collider[] kolesa;
     public Collider vozilo;
 	public float speed=4;
@@ -25,8 +26,8 @@ public class SkriptaPotujNaprej : MonoBehaviour {
 
     int idBarve = 0;
     bool transperent = false;
-    Material[] m;
-    Material[] mA;
+    public Material[] m;
+    public Material[] mA;
     float casT = 0;
 
     void Start () {
@@ -55,19 +56,11 @@ public class SkriptaPotujNaprej : MonoBehaviour {
         if (transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>() != null)
         {
             idBarve = DodajMaterialSkripta.getStevilkaBarve();
-            m = transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().sharedMaterials;
-            mA = new Material[m.Length];
-            for (int j = 0; j < m.Length; j++)
-            {
-                mA[j] = m[j];
-                if (m[j].name.Equals("FrontCol"))
-                {
-                    m[j] = DodajMaterialSkripta.getMaterial(idBarve);
-                    mA[j] = DodajMaterialSkripta.getMaterialA(idBarve);
-                }
-            }
+            m =  DodajMaterialSkripta.getMaterial(idBarve, idVozila);
+            mA = DodajMaterialSkripta.getMaterialA(idBarve, idVozila);
             
-            transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = m;
+            if(m != null)
+                transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = m;
         }
             
 
@@ -75,7 +68,7 @@ public class SkriptaPotujNaprej : MonoBehaviour {
 
     public void setTransparentno()
     {
-        if (!transperent && transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>() != null)
+        if (!transperent && mA != null)
         {
             transperent = true;
             transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = mA;
@@ -103,7 +96,7 @@ public class SkriptaPotujNaprej : MonoBehaviour {
         }
         casZaUnicit -= Time.deltaTime;
 
-        if (transperent && transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>() != null && casT > 1)
+        if (transperent && m != null && casT > 1)
         {
             transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = m;
             casT = 0;
