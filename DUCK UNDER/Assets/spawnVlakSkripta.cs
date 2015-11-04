@@ -10,7 +10,7 @@ public class spawnVlakSkripta : MonoBehaviour {
 	
 
 	public float speed=5;
-    float dolgaCesta = 180;
+    float dolgaCesta = 380;
 	float cas;
 	
 	
@@ -70,7 +70,7 @@ public class spawnVlakSkripta : MonoBehaviour {
             {
                 GameObject zac = prvi;
 
-                
+                zac.GetComponent<SkriptaPotujNaprej>().enabled = true;
                 zac.transform.localPosition = zac.GetComponent<SkriptaPotujNaprej>().pozicija;
                 prvi = zac.GetComponent<SkriptaPotujNaprej>().nazaj;
 
@@ -91,8 +91,8 @@ public class spawnVlakSkripta : MonoBehaviour {
 		for (int i=0; i < 1; i++) {
 			vsota = i * vrniCas();
 			GameObject zac = prvi;
-
-			zac.transform.localPosition = zac.GetComponent<SkriptaPotujNaprej>().pozicija;
+            zac.GetComponent<SkriptaPotujNaprej>().enabled = true;
+            zac.transform.localPosition = zac.GetComponent<SkriptaPotujNaprej>().pozicija;
 			zac.transform.position += transform.forward*vsota;
 			
 			prvi = zac.GetComponent<SkriptaPotujNaprej>().nazaj;

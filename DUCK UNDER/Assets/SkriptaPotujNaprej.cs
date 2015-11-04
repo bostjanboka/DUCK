@@ -27,6 +27,7 @@ public class SkriptaPotujNaprej : MonoBehaviour {
     bool transperent = false;
     Material[] m;
     Material[] mA;
+    float casT = 0;
 
     void Start () {
         vozilo = gameObject.GetComponent<Collider>();
@@ -102,10 +103,15 @@ public class SkriptaPotujNaprej : MonoBehaviour {
         }
         casZaUnicit -= Time.deltaTime;
 
-        if (transperent && transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>() != null &&false)
+        if (transperent && transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>() != null && casT > 1)
         {
             transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = m;
+            casT = 0;
+        }else if (transperent)
+        {
+            casT += Time.deltaTime;
         }
+        
         transperent = false;
 
 	}
