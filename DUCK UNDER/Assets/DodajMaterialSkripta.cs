@@ -11,16 +11,15 @@ public class DodajMaterialSkripta : MonoBehaviour {
 	void Start () {
         material = new Material[5];
         material[0] = Material.Instantiate(cloneM) as Material;
-
         material[1] = Material.Instantiate(cloneM) as Material;
         material[2] = Material.Instantiate(cloneM) as Material;
         material[3] = Material.Instantiate(cloneM) as Material;
         material[4] = Material.Instantiate(cloneM) as Material;
-        material[0].color = Color.green;
-        material[1].color = Color.yellow;
-        material[2].color = Color.red;
-        material[3].color = Color.blue;
-        material[4].color = Color.magenta;
+        material[0].color = new Color(0.988f, 0.745f, 0.122f);
+        material[1].color = new Color(0.063f, 0.616f, 0.349f);
+        material[2].color = new Color(0.863f, 0.2672f, 0.216f);
+        material[3].color = new Color (0.263f, 0.522f, 0.96f);
+        material[4].color = new Color (1f, 1f, 1f);
 
         materialA = new Material[material.Length];
         for(int i=0; i < material.Length; i++)
