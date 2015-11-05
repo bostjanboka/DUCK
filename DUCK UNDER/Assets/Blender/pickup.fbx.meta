@@ -1,21 +1,27 @@
 fileFormatVersion: 2
-guid: e9858634bec808c4db347a88e8402401
-timeCreated: 1435315008
+guid: a38db91f44f73294ea6d123767db3e0b
+timeCreated: 1446764730
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: Camera
-    100002: Cube
-    100004: Lamp
+    100002: Mesh01
+    100004: Model
     100006: //RootNode
     400000: Camera
-    400002: Cube
-    400004: Lamp
+    400002: Mesh01
+    400004: Model
     400006: //RootNode
-    2300000: Cube
-    3300000: Cube
-    4300000: Cube
+    2300000: Camera
+    2300002: Mesh01
+    2300004: Model
+    3300000: Camera
+    3300002: Mesh01
+    3300004: Model
+    4300000: Model
+    4300002: Camera
+    4300004: Mesh01
   materials:
     importMaterials: 1
     materialName: 0
@@ -72,8 +78,10 @@ ModelImporter:
     legStretch: .0500000007
     feetSpacing: 0
     rootMotionBoneName: 
+    hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0
+  humanoidOversampling: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
