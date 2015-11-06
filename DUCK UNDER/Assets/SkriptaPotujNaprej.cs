@@ -72,6 +72,7 @@ public class SkriptaPotujNaprej : MonoBehaviour {
         {
             transperent = true;
             transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = mA;
+            casT = 0;
         }
     }
 	
@@ -96,16 +97,17 @@ public class SkriptaPotujNaprej : MonoBehaviour {
         }
         casZaUnicit -= Time.deltaTime;
 
-        if (transperent && m != null && casT > 1)
+        if (transperent && m != null && casT > 0.3f)
         {
             transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = m;
             casT = 0;
+            transperent = false;
         }else if (transperent)
         {
             casT += Time.deltaTime;
         }
         
-        transperent = false;
+        //transperent = false;
 
 	}
 
