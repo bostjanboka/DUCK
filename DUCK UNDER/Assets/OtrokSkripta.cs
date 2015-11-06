@@ -31,7 +31,7 @@ public class OtrokSkripta : MonoBehaviour {
         raca = GameObject.Find("raca");
         //ubijSe();
         speed += Random.Range(-3f, 1f);
-        sfera = transform.FindChild("GameObject").GetComponent<Collider>();
+        //sfera = transform.FindChild("GameObject").GetComponent<Collider>();
 	}
 	
 	// Update is called once per frame
@@ -59,10 +59,10 @@ public class OtrokSkripta : MonoBehaviour {
             
             Vector3 pos = Vector3.MoveTowards(transform.position, randomRaca, step);
             transform.position = pos;
-            if (!sfera.enabled)
-            {
+           // if (!sfera.enabled)
+           // {
                // sfera.enabled = true;
-            }
+           // }
         }
         else
         {

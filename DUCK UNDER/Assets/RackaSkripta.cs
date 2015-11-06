@@ -62,7 +62,7 @@ public class RackaSkripta : MonoBehaviour {
 
 	void Start () {
 
-		valovi = transform.FindChild ("valovi").gameObject;
+		//valovi = transform.FindChild ("valovi").gameObject;
         perfect.SetActive(false);
 
         //julijan
