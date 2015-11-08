@@ -11,7 +11,7 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
 
     //public float zamik=45;
     public float conSpeed = 10;
-	float speed=5;
+	float speed=25;
 
 	
 	float cas;
@@ -77,6 +77,9 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
                 GameObject zac = prvi;
                 zac.GetComponent<SkriptaPotujNaprej>().enabled = true;
                 zac.transform.localPosition = zac.GetComponent<SkriptaPotujNaprej>().pozicija;
+                Vector3 pos = zac.transform.localPosition;
+                pos.z += Random.Range(-1, 2) * 0.2f;
+                zac.transform.localPosition = pos;
                 zac.GetComponent<SkriptaPotujNaprej>().postaviSe(speed, dolgaCesta/speed);
                 prvi = zac.GetComponent<SkriptaPotujNaprej>().nazaj;
                 

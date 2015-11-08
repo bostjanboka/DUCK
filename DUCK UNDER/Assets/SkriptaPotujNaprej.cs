@@ -72,8 +72,9 @@ public class SkriptaPotujNaprej : MonoBehaviour {
         {
             transperent = true;
             transform.GetChild(0).GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = mA;
-            casT = 0;
+            
         }
+        casT = 0;
     }
 	
 	// Update is called once per frame
@@ -130,7 +131,7 @@ public class SkriptaPotujNaprej : MonoBehaviour {
 
     void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("raca") && gameObject.activeSelf)
+        if ((other.CompareTag("raca") || other.CompareTag("otrok")) && gameObject.activeSelf)
         {
             casZaKolesa = 1;
         }
