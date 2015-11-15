@@ -41,7 +41,8 @@ public class OtrokSkripta : MonoBehaviour {
 		float step = speed*Time.deltaTime;
 
 		Vector3 newDir = Vector3.RotateTowards(transform.position,smer,60,0f);
-        transform.rotation = Quaternion.LookRotation(zasleduj.transform.position-transform.position,Vector3.up);
+        if(Vector3.Magnitude(zasleduj.transform.position - transform.position) > 0 )
+            transform.rotation = Quaternion.LookRotation(zasleduj.transform.position-transform.position,Vector3.up);
             
         
         //pos.y = transform.position.y;
