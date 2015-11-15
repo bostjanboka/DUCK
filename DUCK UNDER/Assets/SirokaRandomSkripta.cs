@@ -37,9 +37,9 @@ public class SirokaRandomSkripta : MonoBehaviour {
 			Transform rot = zac.transform.FindChild("rot");
 			rot.rotation = Quaternion.Euler(0,Random.Range(0,4)*90,0);
 			zac.transform.parent = transform;
-			Mesh mesh = zac.GetComponent<MeshFilter>().sharedMesh;
-			Bounds bounds = mesh.bounds;
-			poz.x = i*bounds.size.x * zac.transform.localScale.x - bounds.size.x * zac.transform.localScale.x;
+			//Mesh mesh = zac.GetComponent<MeshFilter>().sharedMesh;
+			//Bounds bounds = mesh.bounds;
+			poz.x = i*1 * zac.transform.localScale.x - 1 * zac.transform.localScale.x;
 			zac.transform.localPosition = poz;
 			//zac.GetComponent<SpawnRackeSkripta>().postavi();
 		}
