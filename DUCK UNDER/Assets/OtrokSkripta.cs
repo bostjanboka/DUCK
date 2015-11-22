@@ -88,6 +88,10 @@ public class OtrokSkripta : MonoBehaviour {
             {
                 raca.GetComponent<RackaSkripta>().rackaPreckala(false, other.gameObject);
             }
+        }else if (other.CompareTag("resetka"))
+        {
+            if(Random.value < 0.3f)
+                ubijSe();
         }
 	}
 

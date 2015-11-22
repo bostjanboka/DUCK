@@ -24,10 +24,10 @@ public class ResetkaSkripta : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (!transform.parent.parent.GetComponent<JasekSkripta>().racka[indeks].activeSelf && other.gameObject.CompareTag("otrok"))
-        {
-            other.gameObject.GetComponent<OtrokSkripta>().ubijSe();
-            transform.parent.parent.GetComponent<JasekSkripta>().dodajRacko(indeks);
-        }
+        //if (!transform.parent.parent.GetComponent<JasekSkripta>().racka[indeks].activeSelf && other.gameObject.CompareTag("otrok"))
+        //{
+        //    other.gameObject.GetComponent<OtrokSkripta>().ubijSe();
+        //    transform.parent.parent.GetComponent<JasekSkripta>().dodajRacko(indeks);
+        //}
     }
 }

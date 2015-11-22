@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SpawnGameObjectSkripta : MonoBehaviour {
 
@@ -26,11 +27,13 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
     float dolgaCesta = 175;
 
     nazajSkripta nazajSkrip;
+    public List<GameObject> listJasek;
 
-	void Awake(){
+    void Awake(){
 		prejsni = 0;
         stAvtov = transform.parent.gameObject.GetComponent<izberiSpawnSkripta>().stAvtov;
         nazajSkrip = transform.parent.gameObject.GetComponent<nazajSkripta>();
+        listJasek = new List<GameObject>();
 	}
 
 
@@ -94,6 +97,7 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
         if (st > 0) {
 			pospraviVse (st-1,x.GetComponent<SkriptaPotujNaprej> ().nazaj);
 		}
+        pospraviJasek();
 	}
 
 	public void postaviVozila(){
@@ -112,6 +116,7 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
 
 		}
         cas = minimalniZamik(prvi)/speed;
+        postaviJasek();
 	}
 
 	public float minimalniZamik(GameObject vozilo){
@@ -120,6 +125,30 @@ public class SpawnGameObjectSkripta : MonoBehaviour {
 		return minzamik * 175*vozilo.transform.localScale.z;
 
 	}
+
+    void postaviJasek()
+    {
+        for(int i=0; i < 5; i++)
+        {
+            GameObject jasek = postaviJaske.getJasek();
+            Vector3 pos = transform.position;
+            pos += transform.forward * 2.1f*Random.Range(0, 61);
+            pos.z += 2.1f*Random.Range(-3, 4);
+            pos.y = jasek.transform.position.y;
+            jasek.transform.position = pos;
+            listJasek.Add(jasek);
+
+        }
+    }
+    void pospraviJasek()
+    {
+        foreach (GameObject x in listJasek)
+        {
+            x.GetComponent<JasekSkripta>().setEnable(false);
+
+        }
+        listJasek.Clear();
+    }
 
 	public float vrniZamik(GameObject zac){
 		if (Random.Range (0, 100) <= 60) {

@@ -5,55 +5,49 @@ using System.Collections.Generic;
 public class JasekSkripta : MonoBehaviour {
 
     // Use this for initialization
-    public int stEnter;
     GameObject coliderji;
-    public GameObject[] racka;
-    List<GameObject> list;
+    float cas = 0;
+    Collider main;
+    Renderer render;
     void Start () {
-        stEnter = 0;
-        coliderji = transform.FindChild("COLIDERS").gameObject;
+        coliderji = transform.FindChild("col").gameObject;
         coliderji.SetActive(false);
-        racka = new GameObject[16];
-        Transform crna = transform.FindChild("CRNA");
-        for(int i=0; i < racka.Length; i++)
-        {
-            racka[i] = crna.GetChild(i).GetChild(0).gameObject;
-            racka[i].SetActive(false);
-        }
-        list = transform.parent.parent.GetComponent<izberiSpawnSkripta>().listResetk;
-        
+        main = gameObject.GetComponent<Collider>();
+        render = transform.FindChild("Model").GetComponent<Renderer>();
+        setEnable(false);
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	   if(stEnter <= 0)
+	   if(cas <= 0 && coliderji.activeSelf)
         {
             coliderji.SetActive(false);
+        }
+        else
+        {
+            cas -= Time.deltaTime;
         }
 	}
 
     void OnTriggerEnter(Collider other)
     {
-        if(stEnter == 0)
+        if(cas <= 0)
         {
             coliderji.SetActive(true);
+            cas = 1;
         }
-        stEnter++;
     }
 
-    void OnTriggerExit(Collider other)
+    public void setEnable(bool kaj)
     {
-        stEnter--;
-        if(stEnter <= 0)
+        main.enabled = kaj;
+        render.enabled = kaj;
+        if (!kaj)
         {
-            coliderji.SetActive(false);
+            enabled = false;
         }
     }
 
-    public void dodajRacko(int i)
-    {
-        stEnter--;
-        racka[i].SetActive(true);
-        list.Add(racka[i]);
-    }
+    
 }
